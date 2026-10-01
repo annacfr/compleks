@@ -1,0 +1,1043 @@
+<style>
+.services__detail-graphic {
+    position: relative;
+}
+
+.services__detail-graphic > .services__drawing {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.services__detail-graphic[data-service="cadastral"] .services__drawing--cadastral,
+.services__detail-graphic[data-service="geodesy"] .services__drawing--geodesy,
+.services__detail-graphic[data-service="legal"] .services__drawing--legal {
+    display: block;
+}
+</style>
+
+<!-- =====================================================
+     УСЛУГИ
+     ===================================================== -->
+
+<section class="services" id="services" aria-labelledby="services-title">
+    <div class="services__map" aria-hidden="true">
+        <img src="images/rostov-map2.png" alt="">
+    </div>
+    <div class="services__map-overlay" aria-hidden="true"></div>
+
+    <div class="container services__container">
+        <div class="services__topline">
+            <span>03 / УСЛУГИ</span>
+            <span>Кадастр.Геодезия.Юриспруденция</span>
+        </div>
+
+        <div class="services__intro-row">
+            <div class="services__intro">
+                <h2 class="services__title" id="services-title">Наши<br>услуги</h2>
+                <p class="services__description">Выберите направление — справа появится его рабочая схема и краткое описание.</p>
+
+            </div>
+
+            <div class="services__service-stage" aria-label="Направления услуг">
+                <div class="services__service-nav" role="tablist" aria-label="Направления услуг">
+                    <button class="services__service-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="service-panel" id="service-tab-cadastral" data-service="cadastral">
+                        <span class="services__service-marker" aria-hidden="true"></span>
+                        <span class="services__service-index">01</span>
+                        <span class="services__service-name">Кадастровые работы</span>
+                        <span class="services__service-arrow" aria-hidden="true">→</span>
+                    </button>
+                    <button class="services__service-tab" type="button" role="tab" aria-selected="false" aria-controls="service-panel" id="service-tab-geodesy" data-service="geodesy">
+                        <span class="services__service-marker" aria-hidden="true"></span>
+                        <span class="services__service-index">02</span>
+                        <span class="services__service-name">Геодезические работы</span>
+                        <span class="services__service-arrow" aria-hidden="true">→</span>
+                    </button>
+                    <button class="services__service-tab" type="button" role="tab" aria-selected="false" aria-controls="service-panel" id="service-tab-legal" data-service="legal">
+                        <span class="services__service-marker" aria-hidden="true"></span>
+                        <span class="services__service-index">03</span>
+                        <span class="services__service-name">Юридические услуги</span>
+                        <span class="services__service-arrow" aria-hidden="true">→</span>
+                    </button>
+                </div>
+
+                <div class="services__service-detail">
+                    <div class="services__detail-meta"><span id="service-detail-index">01 / 03</span><span id="service-detail-code">CAD / 001</span></div>
+                    <div class="services__detail-copy" id="service-panel" role="tabpanel" aria-labelledby="service-tab-cadastral">
+                        <h3 id="service-detail-title">Кадастровые<br>работы</h3>
+                        <p id="service-detail-text">Подготовка кадастровой документации и работа с границами, объектами и сведениями реестра.</p>
+                        <a href="#contacts" class="services__detail-link">Подробнее <span aria-hidden="true">→</span></a>
+                    </div>
+                    <div class="services__detail-graphic" aria-hidden="true">
+
+                        <!-- 01 / КАДАСТРОВЫЕ РАБОТЫ -->
+<svg class="services__drawing services__drawing--cadastral"
+     xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1370 1148"
+     preserveAspectRatio="xMidYMid meet">
+<defs>
+  <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#fbfcfa"/>
+    <stop offset="1" stop-color="#f7faf7"/>
+  </linearGradient>
+
+  <linearGradient id="parcelFill" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#a7b7b0" stop-opacity=".42"/>
+    <stop offset="1" stop-color="#8da29a" stop-opacity=".34"/>
+  </linearGradient>
+
+  <pattern id="parcelHatch" width="10" height="10" patternUnits="userSpaceOnUse">
+    <path d="M-2 10L10-2 M3 13L13 3"
+          stroke="#60746d" stroke-width=".7" opacity=".16"/>
+  </pattern>
+
+  <pattern id="orchard" width="12" height="12" patternUnits="userSpaceOnUse">
+    <circle cx="3" cy="3" r="1.2" fill="#688078" opacity=".38"/>
+    <circle cx="9" cy="8" r="1.2" fill="#688078" opacity=".38"/>
+  </pattern>
+
+  <style>
+    .terrain { fill:none; stroke:#b9c5c0; stroke-width:1; opacity:.36 }
+    .terrain2 { fill:none; stroke:#c9d2ce; stroke-width:.75; opacity:.42 }
+    .road { fill:none; stroke:#aebbb6; stroke-width:4; opacity:.28 }
+    .road2 { fill:none; stroke:#d4dbd8; stroke-width:1; stroke-dasharray:5 7; opacity:.58 }
+    .site { fill:none; stroke:#c1cbc7; stroke-width:.9; opacity:.42 }
+    .building { fill:none; stroke:#bdc8c3; stroke-width:1; opacity:.48 }
+    .boundary { fill:none; stroke:#163f35; stroke-width:4.2; stroke-linejoin:round; stroke-linecap:round }
+    .secondary { fill:none; stroke:#244c42; stroke-width:2.6; stroke-linejoin:round; stroke-linecap:round }
+    .node { fill:#173f35 }
+    .elev { font-family:Arial,Helvetica,sans-serif; font-size:14px; fill:#50665e; letter-spacing:.2px }
+    .coord { font-family:Arial,Helvetica,sans-serif; font-size:13px; fill:#35564c; letter-spacing:.5px }
+    .info { font-family:Arial,Helvetica,sans-serif; fill:#123c32 }
+  </style>
+</defs>
+
+<!-- paper -->
+<rect width="1370" height="1148" fill="url(#paper)"/>
+
+<!-- =========================================================
+     LIGHT TOPOGRAPHIC BASE — vector only
+     ========================================================= -->
+
+<g>
+  <path class="terrain" d="M15 94 C125 48 220 54 298 104 C382 158 460 151 543 110 C625 70 712 76 786 123 C864 173 939 165 1015 123 C1100 76 1190 83 1370 126"/>
+  <path class="terrain2" d="M0 116 C115 68 215 77 295 128 C375 179 465 174 548 132 C630 91 711 97 797 148 C876 195 951 190 1029 147 C1113 101 1202 107 1370 150"/>
+  <path class="terrain" d="M0 145 C106 101 210 105 286 151 C374 205 464 204 554 160 C637 120 724 125 808 177 C889 226 965 220 1041 178 C1124 133 1223 138 1370 178"/>
+  <path class="terrain2" d="M0 175 C108 132 205 133 281 177 C368 228 460 232 560 188 C644 150 731 154 817 207 C899 257 972 252 1050 209 C1133 164 1231 169 1370 205"/>
+
+  <path class="terrain" d="M0 275 C105 239 195 245 276 291 C355 336 435 350 514 327 C604 301 677 256 766 267 C858 278 922 339 1012 354 C1110 371 1198 332 1370 290"/>
+  <path class="terrain2" d="M0 301 C106 266 195 272 273 317 C353 362 436 377 519 353 C607 328 680 282 768 293 C858 305 926 364 1016 381 C1110 398 1205 359 1370 317"/>
+  <path class="terrain" d="M0 329 C107 295 193 302 270 346 C351 392 438 405 523 380 C610 354 685 310 771 321 C861 334 930 390 1021 408 C1116 426 1208 388 1370 346"/>
+
+  <path class="terrain" d="M0 480 C91 444 171 447 250 488 C329 529 403 544 485 530 C571 516 645 473 727 474 C813 476 884 522 968 536 C1062 551 1154 520 1370 462"/>
+  <path class="terrain2" d="M0 506 C91 471 172 475 247 514 C326 555 405 571 490 557 C576 542 647 500 731 501 C817 502 886 548 972 562 C1064 578 1159 547 1370 490"/>
+  <path class="terrain" d="M0 536 C91 500 171 504 244 542 C323 584 405 601 493 586 C580 571 651 530 734 531 C820 532 891 578 977 592 C1070 607 1165 577 1370 520"/>
+
+  <path class="terrain" d="M0 719 C96 681 181 690 258 733 C340 779 419 794 501 779 C585 763 657 718 740 722 C829 726 900 778 984 795 C1080 814 1184 777 1370 715"/>
+  <path class="terrain2" d="M0 748 C97 710 181 720 255 761 C337 807 420 823 505 808 C590 792 660 748 744 751 C831 755 903 807 988 824 C1081 842 1188 807 1370 744"/>
+  <path class="terrain" d="M0 779 C98 741 181 750 252 791 C334 837 419 854 508 839 C594 824 664 779 748 781 C836 785 907 836 992 853 C1086 871 1192 837 1370 774"/>
+
+  <path class="terrain" d="M0 957 C101 918 185 927 263 972 C343 1018 423 1033 508 1018 C596 1002 670 959 751 962 C837 965 912 1013 999 1029 C1093 1046 1196 1012 1370 953"/>
+  <path class="terrain2" d="M0 987 C102 949 185 958 260 1001 C340 1047 423 1063 512 1048 C600 1032 673 989 755 992 C841 995 916 1043 1003 1059 C1097 1076 1200 1042 1370 983"/>
+</g>
+
+<!-- =========================================================
+     ROADS / WATER / BACKGROUND STRUCTURE
+     ========================================================= -->
+
+<g>
+  <!-- diagonal road upper-left to center -->
+  <path class="road" d="M92 -10 C198 93 290 177 376 264 C457 347 515 431 578 520"/>
+  <path class="road2" d="M92 -10 C198 93 290 177 376 264 C457 347 515 431 578 520"/>
+
+  <!-- large road on right -->
+  <path class="road" d="M770 -20 C817 108 861 240 912 370 C965 503 1012 651 1068 799 C1110 909 1147 1038 1172 1165"/>
+  <path class="road2" d="M770 -20 C817 108 861 240 912 370 C965 503 1012 651 1068 799 C1110 909 1147 1038 1172 1165"/>
+
+  <!-- curved local roads -->
+  <path class="road" d="M15 555 C139 511 233 520 321 579 C385 622 422 676 476 730"/>
+  <path class="road2" d="M15 555 C139 511 233 520 321 579 C385 622 422 676 476 730"/>
+
+  <path class="road" d="M103 1148 C174 1055 231 971 286 875 C331 797 372 733 429 670"/>
+  <path class="road2" d="M103 1148 C174 1055 231 971 286 875 C331 797 372 733 429 670"/>
+</g>
+
+<!-- pond -->
+<g fill="none" stroke="#aebdb7">
+  <path d="M492 37 C535 14 607 17 633 51 C653 78 638 117 596 130 C549 145 489 126 479 94 C470 72 478 51 492 37Z"
+        stroke-width="1.5" opacity=".55"/>
+  <path d="M505 45 C542 26 600 28 622 53 C638 74 624 103 593 113 C552 126 506 111 497 87 C490 70 494 54 505 45Z"
+        stroke-width=".8" opacity=".45"/>
+</g>
+
+<!-- background buildings -->
+<g class="building">
+  <path d="M398 90 l45 -20 34 22 -46 22z"/>
+  <path d="M425 115 l42 -19 31 21 -43 20z"/>
+  <path d="M846 76 l38 -18 31 17 -39 20z"/>
+  <path d="M903 112 l44 -20 34 20 -45 21z"/>
+  <path d="M1004 202 l46 -22 34 18 -48 24z"/>
+  <path d="M1072 250 l39 -19 35 18 -40 21z"/>
+  <path d="M1145 340 l46 -22 35 19 -46 24z"/>
+  <path d="M1189 402 l39 -19 35 19 -40 20z"/>
+  <path d="M105 388 l41 -20 32 20 -43 21z"/>
+  <path d="M153 427 l45 -22 33 20 -45 22z"/>
+  <path d="M207 753 l43 -20 32 18 -44 22z"/>
+  <path d="M254 805 l46 -22 34 20 -47 23z"/>
+  <path d="M897 748 l43 -20 33 19 -44 21z"/>
+  <path d="M956 791 l45 -22 35 20 -46 23z"/>
+  <path d="M1000 887 l45 -21 32 19 -44 22z"/>
+  <path d="M1064 938 l44 -22 34 20 -45 23z"/>
+</g>
+
+<!-- small map symbols -->
+<g fill="none" stroke="#b6c2bd" stroke-width="1" opacity=".55">
+  <circle cx="183" cy="329" r="10"/><circle cx="183" cy="329" r="4"/>
+  <circle cx="328" cy="391" r="9"/><circle cx="328" cy="391" r="3"/>
+  <circle cx="526" cy="184" r="8"/><circle cx="526" cy="184" r="3"/>
+  <circle cx="810" cy="306" r="9"/><circle cx="810" cy="306" r="3"/>
+  <circle cx="1038" cy="585" r="10"/><circle cx="1038" cy="585" r="4"/>
+  <path d="M559 151 l7 12 h-14z"/>
+  <path d="M604 155 l7 12 h-14z"/>
+  <path d="M422 351 l7 12 h-14z"/>
+  <path d="M868 624 l7 12 h-14z"/>
+</g>
+
+<!-- =========================================================
+     ADJACENT CADASTRAL PARCELS
+     ========================================================= -->
+
+<!-- left parcel -->
+<path d="M523 349 L460 201 L355 272 L273 331 L201 483
+         L324 542 L378 604 L402 690 L650 674"
+      class="secondary"/>
+
+<!-- upper parcel -->
+<path d="M523 349 L460 201 L604 147 L661 294 L739 265"
+      class="secondary"/>
+
+<!-- right/lower parcel -->
+<path d="M941 687 L1011 835 L901 932 L824 995 L779 1019
+         L692 791"
+      class="secondary"/>
+
+<!-- lower-left parcel -->
+<path d="M439 752 L650 746 L692 791 L779 1019 L526 1031
+         Z"
+      class="secondary"/>
+
+<!-- lower-left orchard fill -->
+<path d="M439 752 L650 746 L692 791 L779 1019 L526 1031 Z"
+      fill="url(#orchard)" opacity=".72"/>
+
+<!-- =========================================================
+     MAIN PARCEL
+     ========================================================= -->
+
+<path d="M523 349
+         L739 265
+         L860 518
+         L941 687
+         L692 791
+         L650 674
+         Z"
+      fill="url(#parcelFill)"/>
+
+<path d="M523 349
+         L739 265
+         L860 518
+         L941 687
+         L692 791
+         L650 674
+         Z"
+      fill="url(#parcelHatch)"/>
+
+<path d="M523 349
+         L739 265
+         L860 518
+         L941 687
+         L692 791
+         L650 674
+         Z"
+      class="boundary"/>
+
+<!-- main parcel internal cartographic remnants -->
+<g fill="none" stroke="#70827b" stroke-width=".85" opacity=".30">
+  <path d="M548 389 C632 365 710 342 789 337 C827 335 850 348 871 373"/>
+  <path d="M560 423 C646 397 730 377 806 373 C837 372 855 384 879 409"/>
+  <path d="M576 466 C662 441 746 421 824 417 C850 416 870 428 892 450"/>
+  <path d="M590 512 C676 487 757 469 841 465 C868 464 885 476 905 498"/>
+  <path d="M604 559 C693 534 775 516 859 512 C884 511 901 523 918 544"/>
+  <path d="M620 610 C706 585 793 566 875 563 C898 562 915 574 930 594"/>
+  <path d="M635 654 C724 628 808 611 890 607 C911 607 927 619 941 637"/>
+</g>
+
+<!-- =========================================================
+     BOUNDARY NODES
+     ========================================================= -->
+
+<g class="node">
+  <!-- main vertices -->
+  <circle cx="523" cy="349" r="6"/>
+  <circle cx="739" cy="265" r="6"/>
+  <circle cx="860" cy="518" r="6"/>
+  <circle cx="941" cy="687" r="6"/>
+  <circle cx="692" cy="791" r="6"/>
+  <circle cx="650" cy="674" r="6"/>
+
+  <!-- left parcel -->
+  <circle cx="460" cy="201" r="5"/>
+  <circle cx="355" cy="272" r="5"/>
+  <circle cx="273" cy="331" r="5"/>
+  <circle cx="201" cy="483" r="5"/>
+  <circle cx="324" cy="542" r="5"/>
+  <circle cx="378" cy="604" r="5"/>
+  <circle cx="402" cy="690" r="5"/>
+
+  <!-- upper -->
+  <circle cx="604" cy="147" r="5"/>
+  <circle cx="661" cy="294" r="5"/>
+
+  <!-- right/lower -->
+  <circle cx="1011" cy="835" r="5"/>
+  <circle cx="901" cy="932" r="5"/>
+  <circle cx="824" cy="995" r="5"/>
+  <circle cx="779" cy="1019" r="5"/>
+
+  <!-- lower-left -->
+  <circle cx="439" cy="752" r="5"/>
+  <circle cx="650" cy="746" r="5"/>
+  <circle cx="526" cy="1031" r="5"/>
+</g>
+
+<!-- intermediate boundary points -->
+<g fill="#244c42" opacity=".92">
+  <circle cx="292" cy="421" r="3.2"/>
+  <circle cx="236" cy="513" r="3.2"/>
+  <circle cx="350" cy="572" r="3.2"/>
+  <circle cx="391" cy="650" r="3.2"/>
+
+  <circle cx="518" cy="235" r="3.2"/>
+  <circle cx="560" cy="179" r="3.2"/>
+
+  <circle cx="898" cy="598" r="3.2"/>
+  <circle cx="974" cy="759" r="3.2"/>
+  <circle cx="861" cy="960" r="3.2"/>
+  <circle cx="802" cy="1007" r="3.2"/>
+
+  <circle cx="492" cy="751" r="3.2"/>
+  <circle cx="546" cy="749" r="3.2"/>
+  <circle cx="599" cy="748" r="3.2"/>
+  <circle cx="728" cy="872" r="3.2"/>
+  <circle cx="752" cy="946" r="3.2"/>
+</g>
+
+<!-- =========================================================
+     ELEVATION NUMBERS FROM REFERENCE
+     ========================================================= -->
+
+<g class="elev">
+  <text x="232" y="448">87.1</text>
+  <text x="224" y="343">88.3</text>
+  <text x="373" y="215">89.6</text>
+  <text x="510" y="235">90.2</text>
+  <text x="691" y="250">86.4</text>
+  <text x="674" y="414">87.4</text>
+  <text x="741" y="667">86.1</text>
+  <text x="823" y="680">87.9</text>
+  <text x="972" y="491">86.7</text>
+  <text x="915" y="823">88.1</text>
+  <text x="849" y="1013">85.9</text>
+  <text x="607" y="1018">86.5</text>
+  <text x="298" y="1002">87.2</text>
+</g>
+
+<!-- pond label retained because it is part of the reference composition -->
+<text x="545" y="66"
+      font-family="Arial,Helvetica,sans-serif"
+      font-size="16"
+      fill="#48655c"
+      opacity=".82">Пруд</text>
+
+<!-- =========================================================
+     UPPER-RIGHT INFORMATION
+     ========================================================= -->
+
+<g class="info">
+  <text x="1014" y="142" font-size="31">61:44:0080721:123</text>
+  <text x="1015" y="194" font-size="31">S = 1 200 м²</text>
+</g>
+
+<!-- =========================================================
+     LEFT LABEL
+     ========================================================= -->
+
+<g fill="#416057" font-family="Arial,Helvetica,sans-serif">
+  <text x="51" y="591" font-size="17" letter-spacing="1">ЗЕМЕЛЬНЫЙ</text>
+  <text x="51" y="615" font-size="17" letter-spacing="1">УЧАСТОК</text>
+  <path d="M51 624 H54 V666 H51 Z" fill="#5c7770"/>
+  <path d="M59 650 H106" stroke="#416057" stroke-width="1.5"/>
+</g>
+
+<!-- =========================================================
+     COORDINATES — bottom-left
+     ========================================================= -->
+
+<g class="coord">
+  <path d="M52 1009 H110 M81 980 V1038"
+        stroke="#416057" stroke-width="1.5"/>
+
+  <text x="101" y="1044">47°13'26" N</text>
+  <text x="101" y="1066">39°42'18" E</text>
+</g>
+
+<!-- =========================================================
+     SCALE
+     ========================================================= -->
+
+<text x="1087" y="1080"
+      font-family="Arial,Helvetica,sans-serif"
+      font-size="21"
+      letter-spacing="5"
+      fill="#416057">SCALE 1:500</text>
+
+<!-- orientation mark -->
+<g stroke="#416057" stroke-width="1.4" opacity=".85">
+  <path d="M1250 254 V395"/>
+  <path d="M1241 328 H1260"/>
+</g>
+<text x="1247" y="239"
+      font-family="Arial,Helvetica,sans-serif"
+      font-size="15"
+      fill="#416057">С</text>
+
+</svg>
+
+                        <!-- 02 / ГЕОДЕЗИЧЕСКИЕ РАБОТЫ -->
+                        <svg class="services__drawing services__drawing--geodesy"
+                             xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 800 650"
+                             preserveAspectRatio="xMidYMid meet">
+                            <svg class="services__drawing services__drawing--cadastral"
+     xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1370 1148"
+     preserveAspectRatio="xMidYMid meet">
+<defs>
+  <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#fbfcfa"/>
+    <stop offset="1" stop-color="#f7faf7"/>
+  </linearGradient>
+
+  <linearGradient id="parcelFill" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#a7b7b0" stop-opacity=".42"/>
+    <stop offset="1" stop-color="#8da29a" stop-opacity=".34"/>
+  </linearGradient>
+
+  <pattern id="parcelHatch" width="10" height="10" patternUnits="userSpaceOnUse">
+    <path d="M-2 10L10-2 M3 13L13 3"
+          stroke="#60746d" stroke-width=".7" opacity=".16"/>
+  </pattern>
+
+  <pattern id="orchard" width="12" height="12" patternUnits="userSpaceOnUse">
+    <circle cx="3" cy="3" r="1.2" fill="#688078" opacity=".38"/>
+    <circle cx="9" cy="8" r="1.2" fill="#688078" opacity=".38"/>
+  </pattern>
+
+  <style>
+    .terrain { fill:none; stroke:#b9c5c0; stroke-width:1; opacity:.36 }
+    .terrain2 { fill:none; stroke:#c9d2ce; stroke-width:.75; opacity:.42 }
+    .road { fill:none; stroke:#aebbb6; stroke-width:4; opacity:.28 }
+    .road2 { fill:none; stroke:#d4dbd8; stroke-width:1; stroke-dasharray:5 7; opacity:.58 }
+    .site { fill:none; stroke:#c1cbc7; stroke-width:.9; opacity:.42 }
+    .building { fill:none; stroke:#bdc8c3; stroke-width:1; opacity:.48 }
+    .boundary { fill:none; stroke:#163f35; stroke-width:4.2; stroke-linejoin:round; stroke-linecap:round }
+    .secondary { fill:none; stroke:#244c42; stroke-width:2.6; stroke-linejoin:round; stroke-linecap:round }
+    .node { fill:#173f35 }
+    .elev { font-family:Arial,Helvetica,sans-serif; font-size:14px; fill:#50665e; letter-spacing:.2px }
+    .coord { font-family:Arial,Helvetica,sans-serif; font-size:13px; fill:#35564c; letter-spacing:.5px }
+    .info { font-family:Arial,Helvetica,sans-serif; fill:#123c32 }
+  </style>
+</defs>
+
+<!-- paper -->
+<rect width="1370" height="1148" fill="url(#paper)"/>
+
+<!-- =========================================================
+     LIGHT TOPOGRAPHIC BASE — vector only
+     ========================================================= -->
+
+<g>
+  <path class="terrain" d="M15 94 C125 48 220 54 298 104 C382 158 460 151 543 110 C625 70 712 76 786 123 C864 173 939 165 1015 123 C1100 76 1190 83 1370 126"/>
+  <path class="terrain2" d="M0 116 C115 68 215 77 295 128 C375 179 465 174 548 132 C630 91 711 97 797 148 C876 195 951 190 1029 147 C1113 101 1202 107 1370 150"/>
+  <path class="terrain" d="M0 145 C106 101 210 105 286 151 C374 205 464 204 554 160 C637 120 724 125 808 177 C889 226 965 220 1041 178 C1124 133 1223 138 1370 178"/>
+  <path class="terrain2" d="M0 175 C108 132 205 133 281 177 C368 228 460 232 560 188 C644 150 731 154 817 207 C899 257 972 252 1050 209 C1133 164 1231 169 1370 205"/>
+
+  <path class="terrain" d="M0 275 C105 239 195 245 276 291 C355 336 435 350 514 327 C604 301 677 256 766 267 C858 278 922 339 1012 354 C1110 371 1198 332 1370 290"/>
+  <path class="terrain2" d="M0 301 C106 266 195 272 273 317 C353 362 436 377 519 353 C607 328 680 282 768 293 C858 305 926 364 1016 381 C1110 398 1205 359 1370 317"/>
+  <path class="terrain" d="M0 329 C107 295 193 302 270 346 C351 392 438 405 523 380 C610 354 685 310 771 321 C861 334 930 390 1021 408 C1116 426 1208 388 1370 346"/>
+
+  <path class="terrain" d="M0 480 C91 444 171 447 250 488 C329 529 403 544 485 530 C571 516 645 473 727 474 C813 476 884 522 968 536 C1062 551 1154 520 1370 462"/>
+  <path class="terrain2" d="M0 506 C91 471 172 475 247 514 C326 555 405 571 490 557 C576 542 647 500 731 501 C817 502 886 548 972 562 C1064 578 1159 547 1370 490"/>
+  <path class="terrain" d="M0 536 C91 500 171 504 244 542 C323 584 405 601 493 586 C580 571 651 530 734 531 C820 532 891 578 977 592 C1070 607 1165 577 1370 520"/>
+
+  <path class="terrain" d="M0 719 C96 681 181 690 258 733 C340 779 419 794 501 779 C585 763 657 718 740 722 C829 726 900 778 984 795 C1080 814 1184 777 1370 715"/>
+  <path class="terrain2" d="M0 748 C97 710 181 720 255 761 C337 807 420 823 505 808 C590 792 660 748 744 751 C831 755 903 807 988 824 C1081 842 1188 807 1370 744"/>
+  <path class="terrain" d="M0 779 C98 741 181 750 252 791 C334 837 419 854 508 839 C594 824 664 779 748 781 C836 785 907 836 992 853 C1086 871 1192 837 1370 774"/>
+
+  <path class="terrain" d="M0 957 C101 918 185 927 263 972 C343 1018 423 1033 508 1018 C596 1002 670 959 751 962 C837 965 912 1013 999 1029 C1093 1046 1196 1012 1370 953"/>
+  <path class="terrain2" d="M0 987 C102 949 185 958 260 1001 C340 1047 423 1063 512 1048 C600 1032 673 989 755 992 C841 995 916 1043 1003 1059 C1097 1076 1200 1042 1370 983"/>
+</g>
+
+<!-- =========================================================
+     ROADS / WATER / BACKGROUND STRUCTURE
+     ========================================================= -->
+
+<g>
+  <!-- diagonal road upper-left to center -->
+  <path class="road" d="M92 -10 C198 93 290 177 376 264 C457 347 515 431 578 520"/>
+  <path class="road2" d="M92 -10 C198 93 290 177 376 264 C457 347 515 431 578 520"/>
+
+  <!-- large road on right -->
+  <path class="road" d="M770 -20 C817 108 861 240 912 370 C965 503 1012 651 1068 799 C1110 909 1147 1038 1172 1165"/>
+  <path class="road2" d="M770 -20 C817 108 861 240 912 370 C965 503 1012 651 1068 799 C1110 909 1147 1038 1172 1165"/>
+
+  <!-- curved local roads -->
+  <path class="road" d="M15 555 C139 511 233 520 321 579 C385 622 422 676 476 730"/>
+  <path class="road2" d="M15 555 C139 511 233 520 321 579 C385 622 422 676 476 730"/>
+
+  <path class="road" d="M103 1148 C174 1055 231 971 286 875 C331 797 372 733 429 670"/>
+  <path class="road2" d="M103 1148 C174 1055 231 971 286 875 C331 797 372 733 429 670"/>
+</g>
+
+<!-- pond -->
+<g fill="none" stroke="#aebdb7">
+  <path d="M492 37 C535 14 607 17 633 51 C653 78 638 117 596 130 C549 145 489 126 479 94 C470 72 478 51 492 37Z"
+        stroke-width="1.5" opacity=".55"/>
+  <path d="M505 45 C542 26 600 28 622 53 C638 74 624 103 593 113 C552 126 506 111 497 87 C490 70 494 54 505 45Z"
+        stroke-width=".8" opacity=".45"/>
+</g>
+
+<!-- background buildings -->
+<g class="building">
+  <path d="M398 90 l45 -20 34 22 -46 22z"/>
+  <path d="M425 115 l42 -19 31 21 -43 20z"/>
+  <path d="M846 76 l38 -18 31 17 -39 20z"/>
+  <path d="M903 112 l44 -20 34 20 -45 21z"/>
+  <path d="M1004 202 l46 -22 34 18 -48 24z"/>
+  <path d="M1072 250 l39 -19 35 18 -40 21z"/>
+  <path d="M1145 340 l46 -22 35 19 -46 24z"/>
+  <path d="M1189 402 l39 -19 35 19 -40 20z"/>
+  <path d="M105 388 l41 -20 32 20 -43 21z"/>
+  <path d="M153 427 l45 -22 33 20 -45 22z"/>
+  <path d="M207 753 l43 -20 32 18 -44 22z"/>
+  <path d="M254 805 l46 -22 34 20 -47 23z"/>
+  <path d="M897 748 l43 -20 33 19 -44 21z"/>
+  <path d="M956 791 l45 -22 35 20 -46 23z"/>
+  <path d="M1000 887 l45 -21 32 19 -44 22z"/>
+  <path d="M1064 938 l44 -22 34 20 -45 23z"/>
+</g>
+
+<!-- small map symbols -->
+<g fill="none" stroke="#b6c2bd" stroke-width="1" opacity=".55">
+  <circle cx="183" cy="329" r="10"/><circle cx="183" cy="329" r="4"/>
+  <circle cx="328" cy="391" r="9"/><circle cx="328" cy="391" r="3"/>
+  <circle cx="526" cy="184" r="8"/><circle cx="526" cy="184" r="3"/>
+  <circle cx="810" cy="306" r="9"/><circle cx="810" cy="306" r="3"/>
+  <circle cx="1038" cy="585" r="10"/><circle cx="1038" cy="585" r="4"/>
+  <path d="M559 151 l7 12 h-14z"/>
+  <path d="M604 155 l7 12 h-14z"/>
+  <path d="M422 351 l7 12 h-14z"/>
+  <path d="M868 624 l7 12 h-14z"/>
+</g>
+
+<!-- =========================================================
+     ADJACENT CADASTRAL PARCELS
+     ========================================================= -->
+
+<!-- left parcel -->
+<path d="M523 349 L460 201 L355 272 L273 331 L201 483
+         L324 542 L378 604 L402 690 L650 674"
+      class="secondary"/>
+
+<!-- upper parcel -->
+<path d="M523 349 L460 201 L604 147 L661 294 L739 265"
+      class="secondary"/>
+
+<!-- right/lower parcel -->
+<path d="M941 687 L1011 835 L901 932 L824 995 L779 1019
+         L692 791"
+      class="secondary"/>
+
+<!-- lower-left parcel -->
+<path d="M439 752 L650 746 L692 791 L779 1019 L526 1031
+         Z"
+      class="secondary"/>
+
+<!-- lower-left orchard fill -->
+<path d="M439 752 L650 746 L692 791 L779 1019 L526 1031 Z"
+      fill="url(#orchard)" opacity=".72"/>
+
+<!-- =========================================================
+     MAIN PARCEL
+     ========================================================= -->
+
+<path d="M523 349
+         L739 265
+         L860 518
+         L941 687
+         L692 791
+         L650 674
+         Z"
+      fill="url(#parcelFill)"/>
+
+<path d="M523 349
+         L739 265
+         L860 518
+         L941 687
+         L692 791
+         L650 674
+         Z"
+      fill="url(#parcelHatch)"/>
+
+<path d="M523 349
+         L739 265
+         L860 518
+         L941 687
+         L692 791
+         L650 674
+         Z"
+      class="boundary"/>
+
+<!-- main parcel internal cartographic remnants -->
+<g fill="none" stroke="#70827b" stroke-width=".85" opacity=".30">
+  <path d="M548 389 C632 365 710 342 789 337 C827 335 850 348 871 373"/>
+  <path d="M560 423 C646 397 730 377 806 373 C837 372 855 384 879 409"/>
+  <path d="M576 466 C662 441 746 421 824 417 C850 416 870 428 892 450"/>
+  <path d="M590 512 C676 487 757 469 841 465 C868 464 885 476 905 498"/>
+  <path d="M604 559 C693 534 775 516 859 512 C884 511 901 523 918 544"/>
+  <path d="M620 610 C706 585 793 566 875 563 C898 562 915 574 930 594"/>
+  <path d="M635 654 C724 628 808 611 890 607 C911 607 927 619 941 637"/>
+</g>
+
+<!-- =========================================================
+     BOUNDARY NODES
+     ========================================================= -->
+
+<g class="node">
+  <!-- main vertices -->
+  <circle cx="523" cy="349" r="6"/>
+  <circle cx="739" cy="265" r="6"/>
+  <circle cx="860" cy="518" r="6"/>
+  <circle cx="941" cy="687" r="6"/>
+  <circle cx="692" cy="791" r="6"/>
+  <circle cx="650" cy="674" r="6"/>
+
+  <!-- left parcel -->
+  <circle cx="460" cy="201" r="5"/>
+  <circle cx="355" cy="272" r="5"/>
+  <circle cx="273" cy="331" r="5"/>
+  <circle cx="201" cy="483" r="5"/>
+  <circle cx="324" cy="542" r="5"/>
+  <circle cx="378" cy="604" r="5"/>
+  <circle cx="402" cy="690" r="5"/>
+
+  <!-- upper -->
+  <circle cx="604" cy="147" r="5"/>
+  <circle cx="661" cy="294" r="5"/>
+
+  <!-- right/lower -->
+  <circle cx="1011" cy="835" r="5"/>
+  <circle cx="901" cy="932" r="5"/>
+  <circle cx="824" cy="995" r="5"/>
+  <circle cx="779" cy="1019" r="5"/>
+
+  <!-- lower-left -->
+  <circle cx="439" cy="752" r="5"/>
+  <circle cx="650" cy="746" r="5"/>
+  <circle cx="526" cy="1031" r="5"/>
+</g>
+
+<!-- intermediate boundary points -->
+<g fill="#244c42" opacity=".92">
+  <circle cx="292" cy="421" r="3.2"/>
+  <circle cx="236" cy="513" r="3.2"/>
+  <circle cx="350" cy="572" r="3.2"/>
+  <circle cx="391" cy="650" r="3.2"/>
+
+  <circle cx="518" cy="235" r="3.2"/>
+  <circle cx="560" cy="179" r="3.2"/>
+
+  <circle cx="898" cy="598" r="3.2"/>
+  <circle cx="974" cy="759" r="3.2"/>
+  <circle cx="861" cy="960" r="3.2"/>
+  <circle cx="802" cy="1007" r="3.2"/>
+
+  <circle cx="492" cy="751" r="3.2"/>
+  <circle cx="546" cy="749" r="3.2"/>
+  <circle cx="599" cy="748" r="3.2"/>
+  <circle cx="728" cy="872" r="3.2"/>
+  <circle cx="752" cy="946" r="3.2"/>
+</g>
+
+<!-- =========================================================
+     ELEVATION NUMBERS FROM REFERENCE
+     ========================================================= -->
+
+<g class="elev">
+  <text x="232" y="448">87.1</text>
+  <text x="224" y="343">88.3</text>
+  <text x="373" y="215">89.6</text>
+  <text x="510" y="235">90.2</text>
+  <text x="691" y="250">86.4</text>
+  <text x="674" y="414">87.4</text>
+  <text x="741" y="667">86.1</text>
+  <text x="823" y="680">87.9</text>
+  <text x="972" y="491">86.7</text>
+  <text x="915" y="823">88.1</text>
+  <text x="849" y="1013">85.9</text>
+  <text x="607" y="1018">86.5</text>
+  <text x="298" y="1002">87.2</text>
+</g>
+
+<!-- pond label retained because it is part of the reference composition -->
+<text x="545" y="66"
+      font-family="Arial,Helvetica,sans-serif"
+      font-size="16"
+      fill="#48655c"
+      opacity=".82">Пруд</text>
+
+<!-- =========================================================
+     UPPER-RIGHT INFORMATION
+     ========================================================= -->
+
+<g class="info">
+  <text x="1014" y="142" font-size="31">61:44:0080721:123</text>
+  <text x="1015" y="194" font-size="31">S = 1 200 м²</text>
+</g>
+
+<!-- =========================================================
+     LEFT LABEL
+     ========================================================= -->
+
+<g fill="#416057" font-family="Arial,Helvetica,sans-serif">
+  <text x="51" y="591" font-size="17" letter-spacing="1">ЗЕМЕЛЬНЫЙ</text>
+  <text x="51" y="615" font-size="17" letter-spacing="1">УЧАСТОК</text>
+  <path d="M51 624 H54 V666 H51 Z" fill="#5c7770"/>
+  <path d="M59 650 H106" stroke="#416057" stroke-width="1.5"/>
+</g>
+
+<!-- =========================================================
+     COORDINATES — bottom-left
+     ========================================================= -->
+
+<g class="coord">
+  <path d="M52 1009 H110 M81 980 V1038"
+        stroke="#416057" stroke-width="1.5"/>
+
+  <text x="101" y="1044">47°13'26" N</text>
+  <text x="101" y="1066">39°42'18" E</text>
+</g>
+
+<!-- =========================================================
+     SCALE
+     ========================================================= -->
+
+<text x="1087" y="1080"
+      font-family="Arial,Helvetica,sans-serif"
+      font-size="21"
+      letter-spacing="5"
+      fill="#416057">SCALE 1:500</text>
+
+<!-- orientation mark -->
+<g stroke="#416057" stroke-width="1.4" opacity=".85">
+  <path d="M1250 254 V395"/>
+  <path d="M1241 328 H1260"/>
+</g>
+<text x="1247" y="239"
+      font-family="Arial,Helvetica,sans-serif"
+      font-size="15"
+      fill="#416057">С</text>
+
+</svg>
+                        </svg>
+
+                        <!-- 03 / ЮРИДИЧЕСКИЕ УСЛУГИ -->
+                         <svg class="services__drawing services__drawing--legal"
+     xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1370 1148"
+     preserveAspectRatio="xMidYMid meet">
+
+    <!-- Минималистичная юридическая схема -->
+    <g fill="none" stroke="#315c52" stroke-linecap="round" stroke-linejoin="round">
+
+        <!-- лёгкая геометрическая рамка -->
+        <path d="M120 180H250M1120 180H1250" stroke-width="1.2" opacity=".22"/>
+        <path d="M120 968H250M1120 968H1250" stroke-width="1.2" opacity=".22"/>
+
+        <!-- документы -->
+        <rect x="300" y="190" width="610" height="760"
+              rx="2" fill="#f7faf7" stroke="#315c52" stroke-width="2"/>
+
+        <rect x="335" y="225" width="540" height="690"
+              stroke="#8aa098" stroke-width="1" opacity=".55"/>
+
+        <!-- верхняя служебная строка -->
+        <text x="375" y="285"
+              font-family="Arial,Helvetica,sans-serif"
+              font-size="14" letter-spacing="3"
+              fill="#315c52" stroke="none">ЮРИДИЧЕСКИЕ УСЛУГИ</text>
+
+        <path d="M375 310H520" stroke-width="1.5" opacity=".7"/>
+
+        <!-- основной заголовок -->
+        <text x="375" y="405"
+              font-family="Arial,Helvetica,sans-serif"
+              font-size="38" letter-spacing="1.5"
+              fill="#315c52" stroke="none">ПРАВОВОЕ</text>
+
+        <text x="375" y="450"
+              font-family="Arial,Helvetica,sans-serif"
+              font-size="38" letter-spacing="1.5"
+              fill="#315c52" stroke="none">СОПРОВОЖДЕНИЕ</text>
+
+        <!-- линии документа -->
+        <path d="M375 525H820M375 555H820M375 585H760M375 615H700"
+              stroke="#7d968e" stroke-width="1.2" opacity=".7"/>
+
+        <!-- реквизиты -->
+        <text x="375" y="700"
+              font-family="Arial,Helvetica,sans-serif"
+              font-size="13" letter-spacing="2"
+              fill="#315c52" stroke="none">ДОГОВОР № 24/03-ГК</text>
+
+        <text x="375" y="760"
+              font-family="Arial,Helvetica,sans-serif"
+              font-size="12" letter-spacing="1.5"
+              fill="#58766d" stroke="none">ЗАКАЗЧИК</text>
+        <path d="M470 756H690" stroke-width="1"/>
+
+        <text x="375" y="805"
+              font-family="Arial,Helvetica,sans-serif"
+              font-size="12" letter-spacing="1.5"
+              fill="#58766d" stroke="none">ИСПОЛНИТЕЛЬ</text>
+        <path d="M495 801H690" stroke-width="1"/>
+
+        <!-- простой знак документа -->
+        <rect x="748" y="690" width="72" height="88"
+              stroke-width="1.4" opacity=".7"/>
+        <path d="M764 714H805M764 733H805M764 752H795"
+              stroke-width="1" opacity=".65"/>
+
+        <!-- круглая печать -->
+        <g transform="translate(735 840)">
+            <circle r="55" stroke-width="1.5"/>
+            <circle r="45" stroke-width=".8" opacity=".65"/>
+            <path d="M-17 8L-5 20L20-18"
+                  stroke-width="2.2"/>
+        </g>
+
+        <!-- весы -->
+       <!-- весы -->
+<g transform="translate(1050 420)" opacity=".9">
+    <circle cx="0" cy="0" r="210"
+            stroke-width="1" opacity=".22"/>
+
+    <!-- центральная стойка и верхняя перекладина -->
+    <path d="M0 -95V125M0 -95L-100 -45L100 -45"
+          stroke-width="2"/>
+
+    <!-- левый подвес -->
+    <path d="M-100 -45L-135 55M-100 -45L-65 55"
+          stroke-width="1.7"/>
+
+    <!-- правый подвес -->
+    <path d="M100 -45L135 55M100 -45L65 55"
+          stroke-width="1.7"/>
+
+    <!-- левая чаша -->
+    <path d="M-135 55Q-100 78-65 55M-135 55H-65"
+          stroke-width="1.7"/>
+
+    <!-- правая чаша -->
+    <path d="M65 55Q100 78 135 55M65 55H135"
+          stroke-width="1.7"/>
+
+    <!-- основание -->
+    <path d="M-28 125H28M-42 138H42"
+          stroke-width="1.6"/>
+
+    <circle cx="0" cy="-95" r="4"
+            fill="#315c52" stroke="none"/>
+</g>
+
+    </g>
+</svg>
+
+                        <span class="services__graphic-label services__graphic-label--d">X 248.16 &nbsp; Y 731.04</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="services__problems-head">
+            <div>
+                <span class="services__eyebrow">РЕШЕНИЯ ДЛЯ РЕАЛЬНЫХ ЗАДАЧ</span>
+                <h2 class="services__problems-title">Какая у вас<br>задача?</h2>
+            </div>
+            <p>Выберите задачу — ниже появится краткая сводка по возможным работам и решению.</p>
+        </div>
+
+        <div class="services__problems">
+            <div class="services__problem-list" role="tablist" aria-label="Задачи">
+                <button class="services__problem is-active" type="button" role="tab" aria-selected="true" aria-controls="problem-panel" id="problem-tab-1" data-problem="1">
+                    <span class="services__problem-number">01</span>
+                    <span class="services__problem-plus" aria-hidden="true">+</span>
+                    <span class="services__problem-label">Регистрация<br>жилого дома</span>
+                </button>
+                <button class="services__problem" type="button" role="tab" aria-selected="false" aria-controls="problem-panel" id="problem-tab-2" data-problem="2">
+                    <span class="services__problem-number">02</span>
+                    <span class="services__problem-plus" aria-hidden="true">+</span>
+                    <span class="services__problem-label">Оформление реконструкции<br>жилого дома</span>
+                </button>
+                <button class="services__problem" type="button" role="tab" aria-selected="false" aria-controls="problem-panel" id="problem-tab-3" data-problem="3">
+                    <span class="services__problem-number">03</span>
+                    <span class="services__problem-plus" aria-hidden="true">+</span>
+                    <span class="services__problem-label">Уточнение границ<br>земельного участка</span>
+                </button>
+                <button class="services__problem" type="button" role="tab" aria-selected="false" aria-controls="problem-panel" id="problem-tab-4" data-problem="4">
+                    <span class="services__problem-number">04</span>
+                    <span class="services__problem-plus" aria-hidden="true">+</span>
+                    <span class="services__problem-label">Раздел или объединение<br>земельных участков</span>
+                </button>
+                <button class="services__problem" type="button" role="tab" aria-selected="false" aria-controls="problem-panel" id="problem-tab-5" data-problem="5">
+                    <span class="services__problem-number">05</span>
+                    <span class="services__problem-plus" aria-hidden="true">+</span>
+                    <span class="services__problem-label">Перераспределение<br>земельного участка</span>
+                </button>
+                <button class="services__problem" type="button" role="tab" aria-selected="false" aria-controls="problem-panel" id="problem-tab-6" data-problem="6">
+                    <span class="services__problem-number">06</span>
+                    <span class="services__problem-plus" aria-hidden="true">+</span>
+                    <span class="services__problem-label">Акт<br>обследования</span>
+                </button>
+            </div>
+
+            <div class="services__problem-detail is-visible" id="problem-panel" role="tabpanel" aria-labelledby="problem-tab-1">
+                <div class="services__problem-detail-meta">
+                    <span id="problem-detail-index">01 / 05</span>
+                    <span id="problem-detail-code">CASE / 001</span>
+                </div>
+
+                <div class="services__problem-detail-grid">
+                    <div class="services__problem-copy">
+                        <span class="services__problem-kicker">ЗАДАЧА</span>
+                        <h3 id="problem-detail-title">Регистрация жилого дома</h3>
+                        <div class="services__problem-sections"></div>
+                    </div>
+                    <div class="services__case-graphic" aria-hidden="true">
+                        <div class="services__case-image">
+                            <svg class="services__case-svg" viewBox="0 0 420 520" preserveAspectRatio="xMidYMid slice">
+                                <rect x="0" y="0" width="420" height="520" fill="#dfe7e2"/>
+                                <path d="M-20 440L440 100M-50 350L360 -20M80 550L470 180" stroke="#c4d0ca" stroke-width="1" fill="none"/>
+                                <path d="M-20 190L430 440M-40 100L330 540" stroke="#eef2ef" stroke-width="18" fill="none" opacity=".8"/>
+                                <path class="services__case-boundary" d="M76 112L306 78L365 270L278 392L102 334Z"/>
+                                <path class="services__case-boundary services__case-boundary--secondary" d="M54 150L272 116L342 292L254 420L88 360Z"/>
+                                <circle cx="76" cy="112" r="5"/><circle cx="306" cy="78" r="5"/><circle cx="365" cy="270" r="5"/><circle cx="278" cy="392" r="5"/><circle cx="102" cy="334" r="5"/>
+                            </svg>
+                            <span class="services__case-tag">СХЕМА / 001</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="services__footer-link"><a href="#contacts">Не нашли нужную услугу? <span>Получить консультацию →</span></a></div>
+    </div>
+</section>
+
+<section id="documents" class="placeholder-section">
+    <div class="container">
+        <span>Документы</span>
+    </div>
+</section>
+
+<section id="contacts" class="placeholder-section">
+    <div class="container">
+        <span>Контакты</span>
+    </div>
+</section>
+
+</main>
+
+
+<script>
+     /* =====================================================
+       ПЛАВНЫЙ СКРОЛЛ
+       ===================================================== */
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+        link.addEventListener('click', function (event) {
+
+            const target = document.querySelector(this.getAttribute('href'));
+
+            if (!target) {
+                return;
+            }
+
+            event.preventDefault();
+
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+        });
+
+    });
+
+
+    /* =====================================================
+       ОФИС
+       ===================================================== */
+
+    const officeLocation =
+        document.querySelector('.office-location');
+
+    const officePin =
+        document.querySelector('.office-pin');
+
+    const officeClose =
+        document.querySelector('.office-card__close');
+
+
+    if (officePin) {
+
+        officePin.addEventListener('click', function () {
+
+            officeLocation.classList.toggle(
+                'office-location--active'
+            );
+
+        });
+
+    }
+
+
+    if (officeClose) {
+
+        officeClose.addEventListener('click', function (event) {
+
+            event.stopPropagation();
+
+            officeLocation.classList.remove(
+                'office-location--active'
+            );
+
+        });
+
+    }
+
+
+    </script>

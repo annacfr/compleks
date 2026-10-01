@@ -1,0 +1,390 @@
+/* =========================================================
+   СТРАНИЦА УСЛУГИ «МЕЖЕВОЙ ПЛАН»
+   Общая шапка и базовые переменные берутся из css/style.css
+   ========================================================= */
+
+.service-mezhevanie {
+    background: #fbfcfb;
+}
+
+.mezhevanie-page {
+    min-height: calc(100vh - 94px);
+    padding: 22px 0 72px;
+    overflow: hidden;
+}
+
+.mezhevanie-page__container {
+    position: relative;
+}
+
+/* Хлебные крошки */
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 28px;
+    color: #718078;
+    font-size: 14px;
+}
+
+.breadcrumbs a {
+    transition: color .2s ease;
+}
+
+.breadcrumbs a:hover {
+    color: var(--green);
+}
+
+.breadcrumbs__home {
+    color: var(--green);
+    font-size: 16px;
+    line-height: 1;
+}
+
+.breadcrumbs__sep {
+    color: #a8b1ac;
+}
+
+.breadcrumbs__current {
+    color: #48554f;
+}
+
+/* Верхняя композиция */
+.mezhevanie-top {
+    display: grid;
+    grid-template-columns: minmax(260px, .72fr) minmax(440px, 1.35fr) minmax(310px, .82fr);
+    column-gap: clamp(42px, 4vw, 82px);
+    align-items: start;
+}
+
+.mezhevanie-left {
+    min-width: 0;
+}
+
+.page-title {
+    margin: 0 0 28px;
+    color: var(--black);
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(46px, 4vw, 66px);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -2.6px;
+}
+
+.plan-image {
+    width: min(100%, 260px);
+    padding: 9px;
+    background: rgba(255, 255, 255, .84);
+    border: 1px solid rgba(6, 41, 29, .10);
+    border-radius: 4px;
+    box-shadow: 0 18px 45px rgba(19, 39, 30, .07);
+}
+
+.plan-image img {
+    width: 100%;
+    height: auto;
+}
+
+/* Центральный список */
+.reasons {
+    padding-top: 6px;
+    min-width: 0;
+}
+
+.reasons__title {
+    margin: 0 0 25px;
+    color: var(--black);
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.reasons__list {
+    display: grid;
+    gap: 22px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.reasons__list li {
+    color: #26302d;
+    font-size: clamp(17px, 1.2vw, 20px);
+    line-height: 1.5;
+}
+
+.reasons__muted {
+    color: #7d8782;
+}
+
+/* Зелёный информационный блок */
+.info-card {
+    align-self: center;
+    justify-self: end;
+    width: 100%;
+    max-width: 360px;
+    margin-top: 58px;
+    padding: 28px 30px;
+    color: rgba(255, 255, 255, .92);
+    background: #06291d;
+    border-radius: 28px;
+    box-shadow: 0 18px 45px rgba(6, 41, 29, .13);
+}
+
+.info-card p {
+    margin: 0;
+    text-align: center;
+    font-size: clamp(16px, 1.05vw, 18px);
+    line-height: 1.55;
+}
+
+/* Нижняя композиция */
+.bottom-section {
+    display: grid;
+    grid-template-columns: minmax(340px, .78fr) minmax(520px, 1fr);
+    gap: clamp(42px, 4.5vw, 80px);
+    align-items: center;
+    margin-top: 52px;
+}
+
+.map-card {
+    position: relative;
+    min-height: 250px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #405348;
+}
+
+.map-card img {
+    width: 100%;
+    height: 100%;
+    min-height: 250px;
+    object-fit: cover;
+}
+
+.map-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 48%, rgba(6, 41, 29, .52) 100%);
+    pointer-events: none;
+}
+
+.map-card__badge {
+    position: absolute;
+    z-index: 1;
+    left: 22px;
+    bottom: 18px;
+    color: rgba(255, 255, 255, .95);
+    font-size: 14px;
+}
+
+.warning-card {
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    padding: clamp(30px, 3vw, 54px);
+    background: rgba(255, 255, 255, .48);
+    border: 1px solid rgba(6, 41, 29, .25);
+}
+
+@media (min-width: 981px) {
+    .bottom-section {
+        grid-template-columns: minmax(340px, .78fr) minmax(520px, 1fr);
+    }
+
+    .warning-card {
+        grid-column: 2;
+        justify-self: end;
+        width: 100%;
+    }
+}
+
+.warning-card p {
+    margin: 0;
+    color: #27312d;
+    font-size: clamp(20px, 1.45vw, 25px);
+    line-height: 1.55;
+}
+
+/* Планшеты */
+@media (max-width: 1180px) {
+    .mezhevanie-top {
+        grid-template-columns: minmax(240px, .75fr) minmax(360px, 1.2fr) minmax(280px, .85fr);
+        column-gap: 34px;
+    }
+
+    .reasons__list li {
+        padding-left: 38px;
+    }
+
+    .info-card {
+        margin-top: 46px;
+    }
+}
+
+@media (max-width: 980px) {
+    .mezhevanie-top {
+        grid-template-columns: minmax(260px, 1fr) minmax(300px, 1.2fr);
+        grid-template-areas:
+            "left reasons"
+            "card card";
+        row-gap: 40px;
+    }
+
+    .mezhevanie-left { grid-area: left; }
+    .reasons { grid-area: reasons; }
+    .info-card {
+        grid-area: card;
+        justify-self: stretch;
+        max-width: none;
+        margin-top: 0;
+    }
+
+    .bottom-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .mezhevanie-page {
+        padding-top: 18px;
+    }
+
+    .mezhevanie-top {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "left"
+            "reasons"
+            "card";
+        gap: 36px;
+    }
+
+    .page-title {
+        font-size: 44px;
+        letter-spacing: -1.8px;
+    }
+
+    .plan-image {
+        width: min(100%, 300px);
+    }
+
+    .reasons__list li {
+        padding-left: 34px;
+        font-size: 17px;
+    }
+
+    .bottom-section {
+        margin-top: 40px;
+    }
+
+    .warning-card {
+        min-height: auto;
+    }
+
+    .warning-card p {
+        font-size: 19px;
+    }
+}
+/* =========================================================
+   ПЛАВНОЕ ПОЯВЛЕНИЕ СТРАНИЦЫ «МЕЖЕВОЙ ПЛАН»
+   ========================================================= */
+
+@keyframes mezhevanieFadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(28px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Хлебные крошки */
+
+.breadcrumbs {
+    opacity: 0;
+
+    animation:
+        mezhevanieFadeUp
+        0.7s
+        cubic-bezier(.22, 1, .36, 1)
+        0.05s
+        forwards;
+}
+
+
+/* Левая колонка:
+   заголовок «Межевой план» + документ */
+
+.mezhevanie-left {
+    opacity: 0;
+
+    animation:
+        mezhevanieFadeUp
+        0.8s
+        cubic-bezier(.22, 1, .36, 1)
+        0.15s
+        forwards;
+}
+
+
+/* Центральный список «Без него нельзя» */
+
+.reasons {
+    opacity: 0;
+
+    animation:
+        mezhevanieFadeUp
+        0.8s
+        cubic-bezier(.22, 1, .36, 1)
+        0.28s
+        forwards;
+}
+
+
+/* Зелёный информационный блок */
+
+.info-card {
+    opacity: 0;
+
+    animation:
+        mezhevanieFadeUp
+        0.8s
+        cubic-bezier(.22, 1, .36, 1)
+        0.4s
+        forwards;
+}
+
+
+/* Нижняя карта */
+
+.map-card {
+    opacity: 0;
+
+    animation:
+        mezhevanieFadeUp
+        0.85s
+        cubic-bezier(.22, 1, .36, 1)
+        0.5s
+        forwards;
+}
+
+
+/* Нижний текстовый блок */
+
+.warning-card {
+    opacity: 0;
+
+    animation:
+        mezhevanieFadeUp
+        0.85s
+        cubic-bezier(.22, 1, .36, 1)
+        0.62s
+        forwards;
+}

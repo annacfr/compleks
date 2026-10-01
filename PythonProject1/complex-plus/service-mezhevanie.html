@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Межевой план — Комплекс Плюс</title>
+    <meta name="description" content="Подготовка межевых планов в Ростове-на-Дону и Ростовской области.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Общие стили сайта: шапка, логотип, контейнер -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Стили только страницы межевого плана -->
+    <link rel="stylesheet" href="mezhevoy-plan.css">
+    <link rel="stylesheet" href="css/service-map.css">
+    <link rel="stylesheet" href="css/mobile.css">
+</head>
+
+<body class="service-mezhevanie service-map-page">
+<!-- Единый фоновый слой карты для всех страниц услуг -->
+<div class="service-map-background" aria-hidden="true">
+    <img class="service-map-background__image" src="images/rostov-map2.png" alt="">
+</div>
+
+<header class="header">
+    <div class="container header__inner">
+
+        <!-- Возврат на главную страницу -->
+        <a href="index.html#home" class="logo" aria-label="Комплекс Плюс — главная страница">
+            <span class="logo__title">КОМПЛЕКС ПЛЮС</span>
+            <span class="logo__subtitle">Кадастровые работы</span>
+        </a>
+
+        <nav class="navigation" aria-label="Основная навигация">
+            <a href="index.html#about" class="navigation__link">О нас</a>
+            <a href="index.html#services" class="navigation__link">Услуги</a>
+            <a href="index.html#documents" class="navigation__link">Документы</a>
+            <a href="index.html#contacts" class="navigation__link">Контакты</a>
+        </nav>
+
+        <div class="header__right">
+            <a href="tel:+79381433012" class="header__phone">+7 (938) 143-30-12</a>
+            <a href="index.html#contacts" class="header__button">Заказать звонок</a>
+        </div>
+
+        <button class="mobile-menu" type="button" aria-label="Открыть меню">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+    </div>
+</header>
+
+<main class="mezhevanie-page">
+    <div class="container mezhevanie-page__container">
+
+        <nav class="breadcrumbs" aria-label="Хлебные крошки">
+            <a href="index.html#home" class="breadcrumbs__home" aria-label="Главная">⌂</a>
+            <span class="breadcrumbs__sep">›</span>
+            <a href="index.html#home">Главная</a>
+            <span class="breadcrumbs__sep">/</span>
+            <a href="index.html#services">Услуги</a>
+            <span class="breadcrumbs__sep">/</span>
+            <span class="breadcrumbs__current">Межевой план</span>
+        </nav>
+
+        <section class="mezhevanie-top">
+            <div class="mezhevanie-left">
+                <h1 class="page-title">Межевой план</h1>
+
+                <div class="plan-image">
+                    <img src="images/mezhevoy-plan-document.png" alt="Пример межевого плана — схема расположения земельных участков">
+                </div>
+            </div>
+
+            <div class="reasons">
+                <h2 class="reasons__title">Без него нельзя:</h2>
+                <ul class="reasons__list">
+                    <li>• зарегистрировать участок в Росреестре;</li>
+                    <li>• объединить или разделить участки;</li>
+                    <li>• уточнить границы земли;</li>
+                    <li>• устранить ошибки в ЕГРН;</li>
+                    <li>• оформить участок в собственность <span class="reasons__muted">(например, при приватизации);</span></li>
+                    <li>• продать или подарить землю, если она не стоит на учёте или границы не уточнены.</li>
+                </ul>
+            </div>
+
+            <aside class="info-card">
+                <p>
+                    Межевой план — это официальный документ, в котором описаны границы земельного участка.
+                    Он создаётся кадастровым инженером и нужен для оформления земли по закону.
+                </p>
+            </aside>
+        </section>
+
+        <section class="bottom-section">
+            <div class="map-card">
+                <img src="images/rostov-map2.png" alt="Ростов-на-Дону и Ростовская область — спутниковый снимок">
+                <span class="map-card__badge">Ростов-на-Дону и Ростовская область</span>
+            </div>
+
+            <div class="warning-card">
+                <p>
+                    Плохо составленный межевой план может привести к отказу в регистрации, затягиванию сроков
+                    и даже судебным разбирательствам. Мы готовим межевые планы точно по требованиям Росреестра,
+                    с сопровождением на всех этапах — от замеров до внесения в ЕГРН.
+                </p>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<script src="js/mobile-menu.js"></script>
+</body>
+</html>

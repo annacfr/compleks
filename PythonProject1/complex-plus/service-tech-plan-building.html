@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Технический план — Комплекс Плюс
+    </title>
+
+    <meta
+        name="description"
+        content="Подготовка технических планов для объектов недвижимости."
+    >
+
+    <!-- Шрифты -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Общие стили сайта -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <!-- Стили страницы технического плана -->
+
+    <link
+        rel="stylesheet"
+        href="tech-plan.css"
+    >
+    <link rel="stylesheet" href="css/service-map.css">
+    <link rel="stylesheet" href="css/mobile.css">
+
+</head>
+
+
+<body class="tech-plan-page service-map-page">
+<!-- Единый фоновый слой карты для всех страниц услуг -->
+<div class="service-map-background" aria-hidden="true">
+    <img class="service-map-background__image" src="images/rostov-map2.png" alt="">
+</div>
+
+
+<!-- =====================================================
+     ШАПКА
+     ===================================================== -->
+
+<header class="header">
+
+    <div class="container header__inner">
+
+
+        <!-- ЛОГОТИП -->
+
+        <a
+            href="index.html#home"
+            class="logo"
+            aria-label="Комплекс Плюс — главная страница"
+        >
+
+            <span class="logo__title">
+                КОМПЛЕКС ПЛЮС
+            </span>
+
+            <span class="logo__subtitle">
+                Кадастровые работы
+            </span>
+
+        </a>
+
+
+        <!-- НАВИГАЦИЯ -->
+
+        <nav
+            class="navigation"
+            aria-label="Основная навигация"
+        >
+
+            <a
+                href="index.html#about"
+                class="navigation__link"
+            >
+                О нас
+            </a>
+
+            <a
+                href="index.html#services"
+                class="navigation__link"
+            >
+                Услуги
+            </a>
+
+            <a
+                href="index.html#documents"
+                class="navigation__link"
+            >
+                Документы
+            </a>
+
+            <a
+                href="index.html#contacts"
+                class="navigation__link"
+            >
+                Контакты
+            </a>
+
+        </nav>
+
+
+        <!-- ПРАВАЯ ЧАСТЬ -->
+
+        <div class="header__right">
+
+            <a
+                href="tel:+79381433012"
+                class="header__phone"
+            >
+                +7 (938) 143-30-12
+            </a>
+
+
+            <a
+                href="index.html#contacts"
+                class="header__button"
+            >
+                Заказать звонок
+            </a>
+
+        </div>
+
+
+        <!-- МОБИЛЬНОЕ МЕНЮ -->
+
+        <button
+            class="mobile-menu"
+            type="button"
+            aria-label="Открыть меню"
+        >
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </button>
+
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     ОСНОВНОЕ СОДЕРЖИМОЕ
+     ===================================================== -->
+
+<main class="tech-plan-main">
+
+
+    <div class="container tech-plan-container">
+
+
+        <!-- ХЛЕБНЫЕ КРОШКИ -->
+
+        <nav
+            class="tech-breadcrumbs"
+            aria-label="Хлебные крошки"
+        >
+
+            <a
+                href="index.html#home"
+                class="tech-breadcrumbs__home"
+                aria-label="Главная"
+            >
+                ⌂
+            </a>
+
+            <span class="tech-breadcrumbs__sep">
+                ›
+            </span>
+
+            <a href="index.html#home">
+                Главная
+            </a>
+
+            <span class="tech-breadcrumbs__sep">
+                /
+            </span>
+
+            <a href="index.html#services">
+                Услуги
+            </a>
+
+            <span class="tech-breadcrumbs__sep">
+                /
+            </span>
+
+            <span class="tech-breadcrumbs__current">
+                Технический план
+            </span>
+
+        </nav>
+
+
+
+        <!-- =================================================
+             ВЕРХНЯЯ ЧАСТЬ
+             ================================================= -->
+
+        <section class="tech-plan-top">
+
+
+            <!-- ЛЕВЫЙ ЗЕЛЁНЫЙ БЛОК -->
+
+            <aside class="tech-info-card">
+
+                <p>
+
+                    Технический план — это официальный документ,
+                    который нужен для постановки здания,
+                    помещения или сооружения на кадастровый учёт,
+                    а также внесения изменений.
+
+                    Он содержит точные сведения об объекте
+                    недвижимости: его площадь, этажность,
+                    контур, местоположение, адрес
+                    и технические характеристики.
+
+                </p>
+
+            </aside>
+
+
+
+            <!-- ЦЕНТРАЛЬНЫЙ СПИСОК -->
+
+            <div class="tech-reasons">
+
+                <h2 class="tech-reasons__title">
+                    Без технического плана:
+                </h2>
+
+
+                <ul class="tech-reasons__list">
+
+                    <li>
+                        • Затруднительно официально
+                        зарегистрировать объект
+                    </li>
+
+                    <li>
+                        • Объект будет считаться
+                        самовольной постройкой
+                    </li>
+
+                    <li>
+                        • Могут возникнуть проблемы
+                        с налогами, банками и органами власти
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <!-- ПРАВАЯ ЧАСТЬ -->
+
+            <div class="tech-document-column">
+
+
+                <h1 class="tech-page-title">
+                    Технический план
+                </h1>
+
+
+                <div class="tech-document-image">
+
+                    <img
+                        src="images/tech-plan-document.png"
+                        alt="Пример технического плана"
+                    >
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             НИЖНЯЯ ЧАСТЬ
+             ================================================= -->
+
+        <section class="tech-plan-bottom">
+
+
+            <!-- БОЛЬШОЙ ТЕКСТ -->
+
+            <div class="tech-warning-card">
+
+                <p>
+
+                    Плохо составленный технический план —
+                    частая причина отказа в регистрации объекта
+                    в Росреестре. Ошибки в параметрах,
+                    адресе или назначении могут обернуться
+                    затягиванием сроков работ и переплатой.
+
+                    Мы готовим технические планы точно
+                    по требованиям, учитываем все тонкости
+                    и нормативы, а также работаем
+                    с современным программным обеспечением
+                    и высокоточным оборудованием.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- КАРТА -->
+
+            <div class="tech-map-card">
+
+                <img
+                    src="images/rostov-map2.png"
+                    alt="Ростов-на-Дону и Ростовская область"
+                >
+
+                <span class="tech-map-card__badge">
+                    Ростов-на-Дону и Ростовская область
+                </span>
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+
+</main>
+
+
+<script src="js/mobile-menu.js"></script>
+</body>
+
+</html>

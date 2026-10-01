@@ -1,0 +1,75 @@
+/* Единая спокойная карта для всех страниц услуг. */
+.service-map-page {
+    position: relative;
+    isolation: isolate;
+    background: transparent !important;
+}
+
+.service-map-background {
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background: #f8faf8;
+}
+
+.service-map-page > header,
+.service-map-page > main {
+    position: relative;
+    z-index: 1;
+}
+
+/* Убираем старые цельные подложки: остаётся только общая карта. */
+.service-map-page .mezhevanie-page,
+.service-map-page .expert-conclusion-main,
+.service-map-page .tech-plan-main,
+.service-map-page .inspection-main,
+.service-map-page .kpt {
+    background: transparent !important;
+}
+
+.service-map-page .tech-plan-main::before,
+.service-map-page .kpt__background {
+    display: none;
+}
+
+.service-map-background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(248, 250, 248, 0.88) 0%,
+        rgba(255, 255, 255, 0.45) 28%,
+        rgba(255, 255, 255, 0.20) 52%,
+        rgba(248, 250, 248, 0.65) 100%
+    );
+}
+
+.service-map-background__image {
+    position: absolute;
+    inset: -6%;
+    width: 112%;
+    height: 112%;
+    object-fit: cover;
+    opacity: 0.22;
+    filter: saturate(0.7) contrast(0.95) brightness(1.05);
+}
+
+/* Карточки с отдельными картами больше не конкурируют с единым фоном. */
+.service-map-page .map-card,
+.service-map-page .kpt-map,
+.service-map-page .tech-map-card,
+.service-map-page .inspection-map-card {
+    display: none;
+}
+
+@media (max-width: 700px) {
+    .service-map-background__image {
+        inset: -12%;
+        width: 124%;
+        height: 124%;
+    }
+    .service-map-background__image { opacity: 0.18; }
+}

@@ -583,6 +583,5 @@
 .services__detail-graphic[data-service="geodesy"] .services__parcel-fill { fill: none; }
 .services__detail-link[hidden] { display: none; }
 
-/* Case 06 uses the full width for its text, without the decorative diagram. */
-.services__problem-detail--text-only .services__case-graphic { display: none; }
-.services__problem-detail--text-only .services__problem-detail-grid { grid-template-columns: minmax(0, 1fr); }
+/* Case descriptions use the full width without a decorative diagram. */
+.services__problem-detail-grid { grid-template-columns: minmax(0, 1fr); }

@@ -255,17 +255,8 @@ const server = http.createServer(async (request, response) => {
       "true",
     );
     console.log("PASS animated rapid tab switching and keyboard wraparound");
-    assert(
-      !(await animatedPage.locator(".services__case-graphic").isVisible()),
-    );
-    await animatedPage.locator('[data-problem="1"]').click();
-    await animatedPage.waitForFunction(
-      () =>
-        document.getElementById("problem-detail-index").textContent ===
-        "01 / 06",
-    );
-    assert(await animatedPage.locator(".services__case-graphic").isVisible());
-    console.log("PASS case 06 diagram hidden and other cases preserved");
+    assert.equal(await animatedPage.locator(".services__case-svg").count(), 0);
+    console.log("PASS decorative diagrams removed from the entire cases block");
     await animatedPage.waitForSelector("#cpIntroLoader", { state: "hidden" });
     await animatedPage.evaluate(() => {
       window.__leavingObserved = false;
@@ -284,6 +275,33 @@ const server = http.createServer(async (request, response) => {
     assert.equal(
       await animatedPage.locator("h1").textContent(),
       "Кадастровые работы",
+    );
+    const entrance = await animatedPage
+      .locator(".direction-card")
+      .evaluateAll((cards) =>
+        cards.map((card) => ({
+          name: getComputedStyle(card).animationName,
+          delay: parseFloat(getComputedStyle(card).animationDelay),
+          duration: parseFloat(getComputedStyle(card).animationDuration),
+        })),
+      );
+    assert(
+      entrance.every(
+        (card) => card.name === "directionReveal" && card.duration >= 0.8,
+      ),
+    );
+    assert(
+      entrance.every((card, i) => !i || card.delay > entrance[i - 1].delay),
+    );
+    await animatedPage.waitForFunction(() =>
+      [...document.querySelectorAll(".direction-card")].every(
+        (card) =>
+          getComputedStyle(card).opacity === "1" &&
+          getComputedStyle(card).transform === "none",
+      ),
+    );
+    console.log(
+      "PASS staggered card entrance finishes with fully visible content",
     );
     await animatedPage.locator(".direction-back").click();
     await animatedPage.waitForURL("**/index.html#services");

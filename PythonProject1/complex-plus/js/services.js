@@ -297,9 +297,6 @@
     problemCode.textContent = "CASE / " + String(number).padStart(3, "0");
     problemPanel.querySelector("#problem-detail-title").textContent =
       data.title;
-    problemPanel.classList.toggle("services__problem-detail--text-only", number === 6);
-    problemPanel.querySelector(".services__case-tag").textContent =
-      "СХЕМА / " + String(number).padStart(3, "0");
     const sections = document.createDocumentFragment();
     data.sections.forEach((section) => {
       const element = document.createElement("section");

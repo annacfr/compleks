@@ -67,57 +67,6 @@
     .header--menu-open .mobile-menu span:nth-child(2) { opacity: 0; }
     .header--menu-open .mobile-menu span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
-    .hero,
-    .hero__container {
-        min-height: auto;
-    }
-
-    .hero__container {
-        padding-top: 28px;
-        padding-bottom: 56px;
-    }
-
-    /* На мобильном первый экран строится от шапки вниз,
-       без отрицательного смещения десктопной композиции. */
-    .hero__content {
-        width: 100%;
-        transform: none;
-    }
-
-    /* Все быстрые ссылки должны быть полностью видны.
-       Они переносятся на несколько строк вместо обрезания по краям. */
-    .hero__quick-links {
-        width: 100%;
-        margin: 0 0 28px;
-        padding: 0;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 8px 14px;
-        white-space: normal;
-        transform: none;
-    }
-
-    .hero__quick-links a {
-        display: inline-block;
-        flex: 0 0 auto;
-        max-width: 100%;
-        font-size: 12px;
-        line-height: 1.35;
-    }
-
-    .hero__map {
-        width: 100%;
-        opacity: 0.72;
-        height: 54%;
-    }
-
-    .hero__map-fade {
-        background: linear-gradient(180deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.70) 55%, rgba(255,255,255,.35) 100%);
-    }
-
-    .district-labels { opacity: .62; font-size: 11px; }
-
     .service-map-background__image {
         inset: -14%;
         width: 128%;
@@ -240,45 +189,51 @@
    ========================================================= */
 
 @media (max-width: 760px) {
-    /* Ссылки над заголовком — в тот же тёмно-зелёный цвет, что и подзаголовок. */
-    .hero__quick-links a,
-    .hero__quick-links a:visited {
-        color: #06291d;
-    }
-
-    .hero__quick-links a:hover {
-        color: #06291d;
-        opacity: 1;
-    }
-
-    /* На телефоне карта становится отдельным блоком после кнопки,
-       а не фоном первого экрана. */
+    /* One flowing mobile layout: text, map, consultation, service cards.
+       Flatten only the decorative wrappers so the map can sit before the button. */
     .hero {
-        display: flex;
-        flex-direction: column;
-        min-height: auto;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        height: auto;
+        min-height: 0;
+        padding: 28px 16px 40px;
     }
 
-    .hero__container {
-        order: 1;
-        min-height: auto;
-        padding-bottom: 34px;
+    .hero__container,
+    .hero__content {
+        display: contents;
+    }
+
+    .hero__title { order: 1; }
+    .hero__subtitle { order: 2; }
+
+    .hero.hero--ready .hero__content > * {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+
+    .hero__description,
+    .hero__technical,
+    .hero__map-coordinates,
+    .hero__map-fade,
+    .district-labels {
+        display: none;
     }
 
     .hero__map {
-        order: 2;
+        order: 3;
         position: relative;
-        top: auto;
-        right: auto;
-        bottom: auto;
+        inset: auto;
         width: 100%;
         height: auto;
         aspect-ratio: 3 / 2;
-        flex: 0 0 auto;
+        margin: 20px 0;
         opacity: 1;
     }
 
     .hero__map-image {
+        inset: 0;
         width: 100%;
         height: 100%;
         object-fit: contain;
@@ -287,21 +242,39 @@
         transform: none;
     }
 
-    /* Canvas uses the exact same box as the source map.
-       Therefore mask coordinates and visible map coordinates stay proportional. */
     .district-glow-canvas {
+        inset: 0;
         width: 100%;
         height: 100%;
     }
 
-    .district-labels {
+    .hero__button {
+        order: 4;
         width: 100%;
-        height: 100%;
+        top: auto;
+        margin: 0;
+        min-height: 52px;
+        justify-content: space-between;
+        gap: 12px;
     }
 
-    /* На мобильном дымка карты полностью убрана. */
-    .hero__map-fade {
-        display: none;
+    .hero__quick-links {
+        order: 5;
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        margin: 16px 0 0;
+        padding: 0;
+        gap: 10px;
+        transform: none;
+        white-space: normal;
+    }
+
+    .hero-service-card__name {
+        max-width: none;
+        font-size: 14px;
+        line-height: 1.35;
     }
 
     /* На мобильном текстовый блок «О нас» не должен обрезаться

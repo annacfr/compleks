@@ -164,6 +164,99 @@
         font-size: 15px;
         line-height: 1.55;
     }
+
+    /* Directions below the introduction; drawings beside the direction list. */
+    .services__topline {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        gap: 12px;
+        line-height: 1.5;
+    }
+
+    .services__topline span:last-child {
+        display: block;
+        overflow-wrap: anywhere;
+    }
+
+    .services__topline span:last-child::before,
+    .services__topline span:last-child::after { display: none; }
+
+    .services__intro-row {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: 0;
+    }
+
+    .services__intro {
+        padding: 30px 0 24px;
+        border-right: 0;
+    }
+
+    .services__description { max-width: none; margin-top: 20px; }
+
+    .services__service-stage {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        gap: 20px 12px;
+        align-items: center;
+    }
+
+    .services__service-nav {
+        grid-column: 1;
+        grid-row: 1;
+        padding: 0;
+        border-right: 0;
+        min-width: 0;
+    }
+
+    .services__service-tab {
+        grid-template-columns: 18px minmax(0, 1fr) 14px;
+        gap: 6px;
+        padding: 12px 0;
+        min-height: 76px;
+    }
+
+    .services__service-marker { display: none; }
+    .services__service-name { font-size: 15px; overflow-wrap: anywhere; }
+    .services__service-arrow { font-size: 16px; }
+    .services__service-tab::before { display: none; }
+
+    .services__service-detail { display: contents; }
+
+    .services__detail-graphic {
+        grid-column: 2;
+        grid-row: 1;
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+        aspect-ratio: 1;
+        margin: 0;
+    }
+
+    .services__detail-graphic > .services__drawing { min-height: 0; }
+
+    .services__detail-graphic:not([data-service]) .services__drawing--cadastral {
+        display: block;
+    }
+
+    .services__detail-meta { grid-column: 1 / -1; grid-row: 2; gap: 12px; }
+
+    .services__detail-copy {
+        grid-column: 1 / -1;
+        grid-row: 3;
+        transform: none;
+    }
+
+    .services__detail-copy h3 { margin-top: 0; font-size: 32px; }
+    .services__detail-copy p { max-width: none; margin-top: 16px; }
+    .services__detail-link { font-size: 16px; gap: 12px; }
+    .services__direction-hint { display: none; }
+
+    .services__problems-head {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+        padding: 40px 0 24px;
+    }
+
+    .services__problems-title { font-size: clamp(36px, 10vw, 48px); }
     /* Градиент карты начинается немного выше в зоне Ворошиловского района. */
     .hero__map-fade {
         background: linear-gradient(

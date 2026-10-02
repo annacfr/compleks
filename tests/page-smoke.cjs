@@ -6,7 +6,8 @@ const http = require("node:http");
 const path = require("node:path");
 const { chromium } = require("playwright");
 
-const root = path.resolve(__dirname, "../PythonProject1/complex-plus");
+const repositoryRoot = path.resolve(__dirname, "..");
+const root = path.join(repositoryRoot, "PythonProject1/complex-plus");
 const pages = [
   "index.html",
   "service-mezhevanie.html",
@@ -25,8 +26,15 @@ const mime = {
 const server = http.createServer(async (request, response) => {
   try {
     const pathname = new URL(request.url, "http://localhost").pathname;
-    const filename = path.resolve(root, "." + pathname);
-    if (!filename.startsWith(root + path.sep)) throw new Error("Invalid path");
+    const published = pathname.startsWith("/compleks/");
+    const servingRoot = published ? repositoryRoot : root;
+    let relativePath = published
+      ? pathname.slice("/compleks".length)
+      : pathname;
+    if (relativePath.endsWith("/")) relativePath += "index.html";
+    const filename = path.resolve(servingRoot, "." + relativePath);
+    if (!filename.startsWith(servingRoot + path.sep))
+      throw new Error("Invalid path");
     const content = await fs.readFile(filename);
     response.writeHead(200, {
       "Content-Type":
@@ -157,6 +165,38 @@ const server = http.createServer(async (request, response) => {
       }
       await context.close();
     }
+    const entryContext = await browser.newContext({ reducedMotion: "reduce" });
+    await entryContext.route(/^https?:\/\/(?!127\.0\.0\.1)/, (route) =>
+      route.abort(),
+    );
+    const entryPage = await entryContext.newPage();
+    await entryPage.goto(base + "/compleks/?preview=1#contacts");
+    await entryPage.waitForSelector(".services__problem-section");
+    const entryUrl = new URL(entryPage.url());
+    assert.equal(entryUrl.pathname, "/compleks/PythonProject1/complex-plus/");
+    assert.equal(entryUrl.search, "?preview=1");
+    assert.equal(entryUrl.hash, "#contacts");
+    await entryPage.waitForFunction(() => {
+      const box = document.getElementById("contacts").getBoundingClientRect();
+      return box.top < window.innerHeight && box.bottom > 0;
+    });
+    await entryPage.goto(base + "/compleks/index.html");
+    await entryPage.waitForSelector(".services__problem-section");
+    assert.equal(
+      new URL(entryPage.url()).pathname,
+      "/compleks/PythonProject1/complex-plus/",
+    );
+    console.log("PASS Pages root entry, query and fragment preservation");
+    await entryContext.close();
+    const noJsContext = await browser.newContext({ javaScriptEnabled: false });
+    await noJsContext.route(/^https?:\/\/(?!127\.0\.0\.1)/, (route) =>
+      route.abort(),
+    );
+    const noJsPage = await noJsContext.newPage();
+    await noJsPage.goto(base + "/compleks/");
+    await noJsPage.waitForURL("**/compleks/PythonProject1/complex-plus/");
+    console.log("PASS Pages root redirect without JavaScript");
+    await noJsContext.close();
     const animatedContext = await browser.newContext();
     await animatedContext.route(/^https?:\/\/(?!127\.0\.0\.1)/, (route) =>
       route.abort(),

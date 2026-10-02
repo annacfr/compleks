@@ -10,6 +10,9 @@ const repositoryRoot = path.resolve(__dirname, "..");
 const root = path.join(repositoryRoot, "PythonProject1/complex-plus");
 const pages = [
   "index.html",
+  "service-cadastral.html",
+  "service-geodesy.html",
+  "service-legal.html",
   "service-mezhevanie.html",
   "service-kpt.html",
   "service-inspection-act.html",
@@ -103,9 +106,25 @@ const server = http.createServer(async (request, response) => {
                 .getAttribute("data-service"),
               key,
             );
+            const drawing = key === "geodesy" ? "cadastral" : key;
             assert(
-              await page.locator(".services__drawing--" + key).isVisible(),
+              await page.locator(".services__drawing--" + drawing).isVisible(),
             );
+            assert.equal(
+              await page.locator(".services__detail-link").getAttribute("href"),
+              "service-" + key + ".html",
+            );
+            if (key === "geodesy") {
+              assert(
+                await page
+                  .locator(".services__parcel-fill")
+                  .evaluateAll((elements) =>
+                    elements.every(
+                      (element) => getComputedStyle(element).fill === "none",
+                    ),
+                  ),
+              );
+            }
           }
           for (const number of [6, 2, 5, 1]) {
             await page.locator('[data-problem="' + number + '"]').click();

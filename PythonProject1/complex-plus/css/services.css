@@ -567,7 +567,7 @@
 }
 
 .services__detail-graphic[data-service="cadastral"] .services__drawing--cadastral,
-.services__detail-graphic[data-service="geodesy"] .services__drawing--geodesy,
+.services__detail-graphic[data-service="geodesy"] .services__drawing--cadastral,
 .services__detail-graphic[data-service="legal"] .services__drawing--legal {
     display: block;
 }
@@ -578,3 +578,7 @@
 .placeholder-section p { margin: 16px 0; }
 
 .contacts__phone { display: inline-block; color: var(--green); font-size: 20px; }
+
+/* Reuse the cadastral drawing for geodesy, keeping only the parcel outline. */
+.services__detail-graphic[data-service="geodesy"] .services__parcel-fill { fill: none; }
+.services__detail-link[hidden] { display: none; }

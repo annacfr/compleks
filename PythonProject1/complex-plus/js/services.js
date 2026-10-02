@@ -7,18 +7,21 @@
     cadastral: {
       index: "01 / 03",
       code: "CAD / 001",
+      href: "service-cadastral.html",
       title: "Кадастровые<br>работы",
       text: "Подготовка кадастровой документации и работа с границами, объектами и сведениями реестра.",
     },
     geodesy: {
       index: "02 / 03",
       code: "GEO / 002",
+      href: "service-geodesy.html",
       title: "Геодезические<br>работы",
       text: "Измерения и геодезическая фиксация территории, объектов и границ для дальнейших работ.",
     },
     legal: {
       index: "03 / 03",
       code: "LAW / 003",
+      href: "service-legal.html",
       title: "Юридические<br>услуги",
       text: "Сопровождение вопросов, связанных с недвижимостью, земельными участками и документами.",
     },
@@ -229,6 +232,7 @@
   const serviceCode = root.querySelector("#service-detail-code");
   const detailCopy = root.querySelector(".services__detail-copy");
   const detailGraphic = root.querySelector(".services__detail-graphic");
+  const detailLink = root.querySelector(".services__detail-link");
   const directionHint = root.querySelector(".services__direction-hint");
   const problemPanel = root.querySelector(".services__problem-detail");
   const problemIndex = root.querySelector("#problem-detail-index");
@@ -274,6 +278,8 @@
     updateTabs(tabs, key, "service");
     detailCopy.setAttribute("aria-labelledby", "service-tab-" + key);
     directionHint.hidden = true;
+    detailLink.href = data.href;
+    detailLink.hidden = false;
     animateSwap(detailCopy, () => {
       serviceTitle.innerHTML = data.title;
       serviceText.textContent = data.text;

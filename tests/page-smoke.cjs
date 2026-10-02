@@ -255,6 +255,47 @@ const server = http.createServer(async (request, response) => {
       "true",
     );
     console.log("PASS animated rapid tab switching and keyboard wraparound");
+    assert(
+      !(await animatedPage.locator(".services__case-graphic").isVisible()),
+    );
+    await animatedPage.locator('[data-problem="1"]').click();
+    await animatedPage.waitForFunction(
+      () =>
+        document.getElementById("problem-detail-index").textContent ===
+        "01 / 06",
+    );
+    assert(await animatedPage.locator(".services__case-graphic").isVisible());
+    console.log("PASS case 06 diagram hidden and other cases preserved");
+    await animatedPage.waitForSelector("#cpIntroLoader", { state: "hidden" });
+    await animatedPage.evaluate(() => {
+      window.__leavingObserved = false;
+      new MutationObserver(() => {
+        if (document.body.classList.contains("page-leaving")) {
+          window.__leavingObserved = true;
+        }
+      }).observe(document.body, {
+        attributes: true,
+        attributeFilter: ["class"],
+      });
+      document.querySelector(".services__detail-link").click();
+    });
+    await animatedPage.waitForFunction(() => window.__leavingObserved);
+    await animatedPage.waitForURL("**/service-cadastral.html");
+    assert.equal(
+      await animatedPage.locator("h1").textContent(),
+      "Кадастровые работы",
+    );
+    await animatedPage.locator(".direction-back").click();
+    await animatedPage.waitForURL("**/index.html#services");
+    assert.equal(await animatedPage.locator("#cpIntroLoader").count(), 0);
+    assert.equal(
+      await animatedPage.evaluate(() =>
+        document.documentElement.classList.contains("cp-intro-lock"),
+      ),
+      false,
+    );
+    await animatedPage.waitForSelector(".hero--ready");
+    console.log("PASS animated navigation and intro skipped on return");
     await animatedContext.close();
     const context = await browser.newContext({ reducedMotion: "reduce" });
     await context.route(/^https?:\/\/(?!127\.0\.0\.1)/, (route) =>

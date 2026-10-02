@@ -1,0 +1,6 @@
+/* Progressive enhancement: navigation still works without JavaScript. */
+@media (prefers-reduced-motion: no-preference) {
+    body { animation: pageEnter .28s ease-out both; }
+    body.page-leaving { animation: none; opacity: 0; transition: opacity .18s ease-in; }
+    @keyframes pageEnter { from { opacity: 0; } to { opacity: 1; } }
+}

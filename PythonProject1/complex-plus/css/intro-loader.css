@@ -567,3 +567,6 @@ html.cp-intro-lock,
 body.cp-intro-lock {
     overflow: hidden !important;
 }
+
+/* Suppress the loader before first paint when returning in the same tab. */
+.cp-intro-seen .cp-intro-loader { display: none; }

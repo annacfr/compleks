@@ -2,6 +2,13 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <script>
+        try {
+            if (sessionStorage.getItem('cp-intro-seen')) {
+                document.documentElement.classList.add('cp-intro-seen');
+            }
+        } catch (_) {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Комплекс Плюс — кадастровые работы</title>
@@ -27,6 +34,7 @@
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
         rel="stylesheet"
     >
+    <link rel="stylesheet" href="css/page-transitions.css">
 </head>
 <body>
 <div class="cp-intro-loader" id="cpIntroLoader" aria-hidden="false">
@@ -363,5 +371,6 @@
 
 <script src="js/page.js"></script>
 
+<script src="js/page-transitions.js"></script>
 </body>
 </html>

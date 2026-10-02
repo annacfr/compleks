@@ -19,13 +19,6 @@
         window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /*
-     * Для интеграции:
-     * true  — первый визит: полная сцена; следующие визиты: короткая.
-     * false — показывать полную сцену при каждом обновлении страницы.
-     */
-    const SKIP_AFTER_FIRST_VISIT = false;
-
-    /*
      * Если понадобится полностью отключить intro:
      * добавьте data-cp-intro-disabled="true" на body.
      */
@@ -34,15 +27,22 @@
         return;
     }
 
-    const firstVisit = !sessionStorage.getItem(STORAGE_KEY);
+    // Storage may be unavailable in private or restricted browsing contexts.
+    let firstVisit = true;
+    try {
+        firstVisit = !sessionStorage.getItem(STORAGE_KEY);
+    } catch (_) {}
+    if (!firstVisit) {
+        loader.remove();
+        document.documentElement.classList.remove('cp-intro-lock');
+        document.body.classList.remove('cp-intro-lock');
+        return;
+    }
 
     let duration = 3550;
 
     if (REDUCED_MOTION) {
         duration = 350;
-    } else if (SKIP_AFTER_FIRST_VISIT && !firstVisit) {
-        loader.classList.add('cp-intro-loader--short');
-        duration = 900;
     }
 
     function finishLoader() {
@@ -136,7 +136,7 @@
          * только при первом входе.
          */
         if (firstVisit) {
-            sessionStorage.setItem(STORAGE_KEY, '1');
+            try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (_) {}
         }
 
         window.setTimeout(finishLoader, duration);

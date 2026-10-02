@@ -146,12 +146,11 @@
         }
 
         const progress = track.querySelector("i");
-        const marker = track.querySelector(".hero-scroll__marker");
         const steps = Array.from(
             scroll.querySelectorAll(".hero-scroll__step")
         );
 
-        if (!progress || !marker || !steps.length) {
+        if (!progress || !steps.length) {
             return;
         }
 
@@ -198,35 +197,15 @@
                 return;
             }
 
-            const maxScroll = Math.max(
-                1,
-                document.documentElement.scrollHeight -
-                window.innerHeight
-            );
-
-            const visibleSteps = [];
-            steps.forEach(function (step) {
-                const section = sections.find(function (item) {
-                    return item.id === step.dataset.section;
+            const visibleSteps = steps.filter(function (step) {
+                const exists = sections.some(function (section) {
+                    return section.id === step.dataset.section;
                 });
-                step.hidden = !section;
-                if (section) {
-                    visibleSteps.push({
-                        element: step,
-                        top: trackHeight * clamp(section.top / maxScroll, 0, 1)
-                    });
-                }
+                step.hidden = !exists;
+                return exists;
             });
-
-            // Keep labels legible when short sections sit close to the page end.
-            const spacing = Math.min(18, trackHeight / Math.max(1, visibleSteps.length - 1));
-            for (let i = visibleSteps.length - 2; i >= 0; i--) {
-                visibleSteps[i].top = Math.min(visibleSteps[i].top, visibleSteps[i + 1].top - spacing);
-            }
             visibleSteps.forEach(function (step, index) {
-                const minimum = index ? visibleSteps[index - 1].top + spacing : 0;
-                step.top = Math.max(minimum, step.top);
-                step.element.style.top = step.top.toFixed(2) + "px";
+                step.style.top = (trackHeight * index / Math.max(1, visibleSteps.length - 1)).toFixed(2) + "px";
             });
         }
 
@@ -289,11 +268,6 @@
 
             progress.style.height =
                 y.toFixed(2) + "px";
-
-            marker.style.transform =
-                "translate3d(0, " +
-                y.toFixed(2) +
-                "px, 0) translateY(-50%)";
 
             if (
                 currentProgress !== targetProgress

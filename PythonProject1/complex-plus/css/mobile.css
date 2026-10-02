@@ -1,5 +1,4 @@
 /* Единый мобильный слой: сохраняет стиль сайта и делает все разделы удобными для телефона. */
-.mobile-services-list { display: none; }
 
 @media (max-width: 760px) {
     html { scroll-behavior: smooth; }
@@ -197,18 +196,12 @@
     }
 
     .header__button,
-    .hero__button,
-    .services__consultation-button {
+    .hero__button {
         min-height: 48px;
     }
 
     .services {
         padding: 54px 0 60px;
-    }
-
-    .services__heading {
-        gap: 18px;
-        margin-bottom: 28px;
     }
 
     .services__title {
@@ -219,48 +212,6 @@
     .services__description {
         font-size: 15px;
         line-height: 1.55;
-    }
-
-    .services__grid { display: none; }
-
-    .mobile-services-list {
-        display: grid;
-        gap: 10px;
-    }
-
-    .mobile-service-card {
-        min-height: 96px;
-        display: grid;
-        grid-template-columns: 52px 1fr auto;
-        align-items: center;
-        gap: 14px;
-        padding: 16px;
-        color: #101b17;
-        background: rgba(255,255,255,.78);
-        border: 1px solid rgba(6,41,29,.10);
-        border-radius: 15px;
-        box-shadow: 0 8px 22px rgba(19,39,30,.035);
-    }
-
-    .mobile-service-card:first-child {
-        background: rgba(232, 244, 238, .82);
-    }
-
-    .mobile-service-card img {
-        width: 46px;
-        height: 46px;
-    }
-
-    .mobile-service-card span {
-        font-size: 15px;
-        font-weight: 500;
-        line-height: 1.35;
-    }
-
-    .mobile-service-card b {
-        color: #0b5139;
-        font-size: 23px;
-        font-weight: 400;
     }
     /* Градиент карты начинается немного выше в зоне Ворошиловского района. */
     .hero__map-fade {
@@ -353,27 +304,6 @@
 
     /* На мобильном текстовый блок «О нас» не должен обрезаться
        из-за двухколоночной desktop-сетки и смещения правого блока. */
-    .about__container {
-        min-height: auto;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr);
-        gap: 34px;
-        padding-top: 38px;
-        padding-bottom: 48px;
-    }
-
-    .about__info {
-        width: 100%;
-        max-width: none;
-        min-width: 0;
-    }
-
-    .about__description {
-        width: 100%;
-        max-width: none;
-        min-width: 0;
-        overflow-wrap: break-word;
-    }
 
     .about__statement {
         width: 100%;

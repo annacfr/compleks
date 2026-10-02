@@ -3,6 +3,8 @@
 @media (max-width: 760px) {
     html { scroll-behavior: smooth; }
 
+    .hero-scroll { display: none; }
+
     .container {
         width: min(calc(100% - 32px), 620px);
     }

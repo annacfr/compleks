@@ -123,20 +123,22 @@ const server = http.createServer(async (request, response) => {
               behavior: "instant",
             }),
           );
-          await page.waitForFunction(
-            () =>
-              parseFloat(
-                document.querySelector(".hero-scroll__track i").style.height,
-              ) > 175,
-          );
-          const positions = await page
-            .locator(".hero-scroll__step")
-            .evaluateAll((items) =>
-              items.map((item) => parseFloat(item.style.top)),
+          if (!mobile) {
+            await page.waitForFunction(
+              () =>
+                parseFloat(
+                  document.querySelector(".hero-scroll__track i").style.height,
+                ) > 175,
             );
-          assert(
-            positions.every((top, i) => !i || top - positions[i - 1] >= 17),
-          );
+            const positions = await page
+              .locator(".hero-scroll__step")
+              .evaluateAll((items) =>
+                items.map((item) => parseFloat(item.style.top)),
+              );
+            assert(
+              positions.every((top, i) => !i || top - positions[i - 1] >= 17),
+            );
+          }
           assert(await page.locator("#contacts a[href^='tel:']").isVisible());
         } else if (!mobile) {
           assert.notEqual(

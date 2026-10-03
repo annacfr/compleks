@@ -20,7 +20,6 @@
 .direction-card[open] .direction-card__toggle::after { transform: rotate(0); }
 .direction-card__content { padding: 0 28px 26px 76px; }
 .direction-card__content p { margin: 0; font-size: 15px; line-height: 1.65; color: var(--text-soft); }
-.direction-card__source { display: inline-flex; gap: 8px; margin-top: 18px; padding-bottom: 5px; border-bottom: 1px solid rgba(6,41,29,.25); color: var(--green); font-size: 12px; line-height: 1.5; }
 .direction-card__summary:focus-visible { outline: 2px solid var(--green); outline-offset: -4px; }
 .direction-back { display: inline-block; margin-top: 32px; font-size: 15px; }
 .direction-page a:focus-visible { outline: 2px solid var(--green); outline-offset: 5px; }

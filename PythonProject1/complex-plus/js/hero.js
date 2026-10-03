@@ -158,7 +158,6 @@
             "home",
             "about",
             "services",
-            "documents",
             "contacts"
         ];
 

@@ -1983,7 +1983,7 @@ html.has-custom-scroll::-webkit-scrollbar, html.has-custom-scroll body::-webkit-
 
     display: inline-block;
 
-    opacity: .18;
+    opacity: 1;
 
     filter: blur(5px);
 
@@ -2000,7 +2000,7 @@ html.has-custom-scroll::-webkit-scrollbar, html.has-custom-scroll body::-webkit-
 .about__char {
     display: inline-block;
 
-    opacity: .18;
+    opacity: 1;
 
     filter: blur(5.5px);
 
@@ -2173,7 +2173,7 @@ html.has-custom-scroll::-webkit-scrollbar, html.has-custom-scroll body::-webkit-
 .about__text-line {
     display: block;
 
-    opacity: .18;
+    opacity: 1;
 
     filter: blur(5px);
 

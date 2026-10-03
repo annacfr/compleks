@@ -86,6 +86,11 @@
         y = 0,
         scale = 1
     ) {
+        if (reducedMotion) {
+            element.style.transform = "none";
+            return;
+        }
+
         element.style.transform =
             "translate3d(" +
             x.toFixed(2) +
@@ -99,145 +104,6 @@
 
 
     /* =========================================================
-       CHARACTER PREPARATION
-       =========================================================
-
-       Каждая строка разбивается на символы.
-
-       При этом:
-       - <em> сохраняется;
-       - слова не меняются;
-       - HTML-структура страницы не требуется менять вручную.
-
-       Это позволяет сделать очень лёгкий эффект
-       постепенной сборки отдельных букв и знаков.
-       ========================================================= */
-
-    function prepareCharacters(element) {
-
-        const nodes = [
-            ...element.childNodes
-        ];
-
-        let characterIndex = 0;
-
-        function processNode(node) {
-
-            if (node.nodeType === Node.TEXT_NODE) {
-
-                const text = node.textContent;
-
-                if (!text.trim()) {
-                    return;
-                }
-
-                const fragment = document.createDocumentFragment();
-
-                [...text].forEach(function (character) {
-
-                    const span =
-                        document.createElement("span");
-
-                    span.className =
-                        "about__char";
-
-                    span.textContent =
-                        character === " "
-                            ? "\u00A0"
-                            : character;
-
-                    span.dataset.charIndex =
-                        String(characterIndex++);
-
-                    fragment.appendChild(span);
-                });
-
-                node.parentNode.replaceChild(
-                    fragment,
-                    node
-                );
-
-                return;
-            }
-
-            if (node.nodeType === Node.ELEMENT_NODE) {
-
-                [
-                    ...node.childNodes
-                ].forEach(processNode);
-            }
-        }
-
-        nodes.forEach(processNode);
-
-        return [
-            ...element.querySelectorAll(".about__char")
-        ];
-    }
-
-
-    /*
-     * Подготавливаем буквы только один раз.
-     */
-
-    const fragmentCharacters =
-        fragments.map(prepareCharacters);
-
-    const textCharacters =
-        textLines.map(prepareCharacters);
-
-
-    /* =========================================================
-       CHARACTER ORDER
-       =========================================================
-
-       Не используем обычный порядок 1 → 2 → 3.
-
-       Внутри каждой строки буквы получают слегка
-       перемешанный порядок. Благодаря этому строка
-       ощущается как собирающаяся композиция, а не
-       как печатающаяся строка.
-       ========================================================= */
-
-    function getRevealOrder(characters) {
-
-        return characters
-            .map(function (element, index) {
-
-                const character =
-                    element.textContent;
-
-                const code =
-                    character.charCodeAt(0);
-
-                const score =
-                    (
-                        index * 37 +
-                        code * 17 +
-                        (index % 5) * 13
-                    ) % 101;
-
-                return {
-                    element,
-                    index,
-                    score
-                };
-            })
-            .sort(function (a, b) {
-
-                return a.score - b.score;
-            });
-    }
-
-
-    const fragmentOrders =
-        fragmentCharacters.map(getRevealOrder);
-
-    const textOrders =
-        textCharacters.map(getRevealOrder);
-
-
-    /* =========================================================
        MAIN RENDER
        ========================================================= */
 
@@ -246,271 +112,21 @@
         progress = clamp(progress);
 
 
-        /* =====================================================
-           1. MAIN TEXT
-           =====================================================
+        // Весь текст уже виден. Прокрутка меняет только резкость строк.
+        const lineStarts = [0.07, 0.26, 0.45, 0.64, 0.82];
+        const lineEnds = [0.28, 0.47, 0.66, 0.85, 0.96];
+        const textStarts = [0.88, 0.925, 0.955];
+        const textEnds = [0.98, 1, 1];
 
-           Каждая следующая строка начинается примерно через
-           один и тот же интервал scroll-progress.
-
-           Это создаёт ощущение:
-
-           строка
-           ↓
-           строка
-           ↓
-           строка
-
-           а не непрерывной анимации всего блока.
-           ===================================================== */
-
-        const lineStarts = [
-            0.07,
-            0.26,
-            0.45,
-            0.64,
-            0.82
-        ];
-
-        const lineEnds = [
-            0.28,
-            0.47,
-            0.66,
-            0.85,
-            0.96
-        ];
-
-
-        fragments.forEach(function (fragment, lineIndex) {
-
-            const local =
-                range(
-                    progress,
-                    lineStarts[lineIndex] ?? 0.07,
-                    lineEnds[lineIndex] ?? 0.28
-                );
-
-
-            /*
-             * Вся строка слегка входит из размытия.
-             */
-
-            const baseBlur =
-                6.5 * (1 - local);
-
-            const baseY =
-                7 * (1 - local);
-
-
-            fragment.style.opacity = "1";
-
-            fragment.style.filter =
-                "blur(" +
-                baseBlur.toFixed(2) +
-                "px)";
-
-
-            setTransform(
-                fragment,
-                0,
-                baseY
-            );
-
-
-            /* -------------------------------------------------
-               LETTER ASSEMBLY
-               ------------------------------------------------- */
-
-            const order =
-                fragmentOrders[lineIndex] || [];
-
-
-            order.forEach(function (item, index) {
-
-                const character =
-                    item.element;
-
-                const total =
-                    Math.max(1, order.length);
-
-
-                /*
-                 * Большая часть букв появляется в первой
-                 * половине локального интервала.
-                 *
-                 * Поэтому это не выглядит как печатание.
-                 */
-
-                const stagger =
-                    index / total * 0.48;
-
-                const charProgress =
-                    ease(
-                        clamp(
-                            (local - stagger) /
-                            0.52
-                        )
-                    );
-
-
-                /*
-                 * Знаки препинания и пробелы собираются
-                 * чуть быстрее.
-                 */
-
-                const isPunctuation =
-                    /[.,;:!?\u2014\u2013-]/.test(
-                        character.textContent
-                    );
-
-
-                const punctuationBoost =
-                    isPunctuation ? 0.12 : 0;
-
-
-                const finalProgress =
-                    ease(
-                        clamp(
-                            charProgress +
-                            punctuationBoost
-                        )
-                    );
-
-
-                const x =
-                    (
-                        ((index % 3) - 1) *
-                        1.8
-                    ) *
-                    (1 - finalProgress);
-
-
-                const y =
-                    (
-                        index % 2 === 0
-                            ? 3
-                            : -2
-                    ) *
-                    (1 - finalProgress);
-
-
-                const blur =
-                    5.5 *
-                    (1 - finalProgress);
-
-
-                character.style.opacity = "1";
-
-                character.style.filter =
-                    "blur(" +
-                    blur.toFixed(2) +
-                    "px)";
-
-
-                character.style.transform =
-                    "translate3d(" +
-                    x.toFixed(2) +
-                    "px, " +
-                    y.toFixed(2) +
-                    "px, 0)";
+        function sharpen(lines, starts, ends, blur) {
+            lines.forEach(function (line, index) {
+                const local = range(progress, starts[index] ?? starts[0], ends[index] ?? ends[0]);
+                line.style.filter = "blur(" + (blur * (1 - local)).toFixed(2) + "px)";
             });
-        });
+        }
 
-
-        /* =====================================================
-           2. DESCRIPTION
-           =====================================================
-
-           Появляется после того, как основной текст
-           уже практически собран.
-           ===================================================== */
-
-        const textStarts = [
-            0.88,
-            0.925,
-            0.955
-        ];
-
-        const textEnds = [
-            0.98,
-            1.00,
-            1.00
-        ];
-
-
-        textLines.forEach(function (line, lineIndex) {
-
-            const local =
-                range(
-                    progress,
-                    textStarts[lineIndex] ?? 0.88,
-                    textEnds[lineIndex] ?? 0.98
-                );
-
-
-            line.style.opacity = "1";
-
-
-            line.style.filter =
-                "blur(" +
-                (5 * (1 - local)).toFixed(2) +
-                "px)";
-
-
-            line.style.transform =
-                "translate3d(0, " +
-                (5 * (1 - local)).toFixed(2) +
-                "px, 0)";
-
-
-            const order =
-                textOrders[lineIndex] || [];
-
-
-            order.forEach(function (item, index) {
-
-                const character =
-                    item.element;
-
-                const total =
-                    Math.max(1, order.length);
-
-
-                const stagger =
-                    index / total * 0.36;
-
-
-                const charProgress =
-                    ease(
-                        clamp(
-                            (local - stagger) /
-                            0.64
-                        )
-                    );
-
-
-                character.style.opacity = "1";
-
-
-                character.style.filter =
-                    "blur(" +
-                    (
-                        4 *
-                        (1 - charProgress)
-                    ).toFixed(2) +
-                    "px)";
-
-
-                character.style.transform =
-                    "translate3d(0, " +
-                    (
-                        2 *
-                        (1 - charProgress)
-                    ).toFixed(2) +
-                    "px, 0)";
-            });
-        });
-
+        sharpen(fragments, lineStarts, lineEnds, 4.5);
+        sharpen(textLines, textStarts, textEnds, 2.5);
 
         /* =====================================================
            3. GEOMETRY
@@ -700,81 +316,6 @@
 
 
     /* =========================================================
-       REDUCED MOTION
-       ========================================================= */
-
-    function renderReducedMotion() {
-
-        fragments.forEach(function (fragment) {
-
-            fragment.style.opacity = "1";
-            fragment.style.filter = "none";
-            fragment.style.transform = "none";
-
-
-            fragment
-                .querySelectorAll(".about__char")
-                .forEach(function (character) {
-
-                    character.style.opacity = "1";
-                    character.style.filter = "none";
-                    character.style.transform = "none";
-                });
-        });
-
-
-        textLines.forEach(function (line) {
-
-            line.style.opacity = "1";
-            line.style.filter = "none";
-            line.style.transform = "none";
-
-
-            line
-                .querySelectorAll(".about__char")
-                .forEach(function (character) {
-
-                    character.style.opacity = "1";
-                    character.style.filter = "none";
-                    character.style.transform = "none";
-                });
-        });
-
-
-        technical.forEach(function (element) {
-
-            element.style.opacity = "0.12";
-            element.style.transform = "none";
-        });
-
-
-        boundaries.forEach(function (element) {
-
-            element.style.opacity = "0.10";
-            element.style.transform = "none";
-        });
-
-
-        if (cross) {
-
-            cross.style.opacity = "0.12";
-
-            cross
-                .querySelectorAll("line, circle")
-                .forEach(function (element) {
-
-                    element.style.opacity = "1";
-                });
-        }
-
-
-        section.classList.add(
-            "is-complete"
-        );
-    }
-
-
-    /* =========================================================
        SCROLL LOOP
        ========================================================= */
 
@@ -856,6 +397,7 @@
     }
 
 
-    requestUpdate();
+    section.classList.add("is-scroll-ready");
+    update();
 
 })();

@@ -1,5 +1,5 @@
 /* =========================================================
-   SERVICES — EDITORIAL / INTERACTIVE SYSTEM
+   SERVICES - EDITORIAL / INTERACTIVE SYSTEM
    Отдельный файл блока Services.
    ========================================================= */
 
@@ -196,7 +196,7 @@
 .services__graphic-label--a { left:3%; top:3%; }.services__graphic-label--b{right:2%;top:16%;}.services__graphic-label--c{right:2%;bottom:7%;}.services__graphic-label--d{left:3%;bottom:7%;}
 
 /* =========================================================
-   ЗАДАЧИ / КЕЙСЫ — обновлённая структура
+   ЗАДАЧИ / КЕЙСЫ - обновлённая структура
    ========================================================= */
 .services__problems-head {
     display:grid;
@@ -449,7 +449,7 @@
 .services::before { background-image:none; border-top:1px solid rgba(6,41,29,.035); pointer-events:none; }
 
 /* =========================================================
-   SERVICES — КЕЙСЫ: 6 задач + подробная информационная сводка
+   SERVICES - КЕЙСЫ: 6 задач + подробная информационная сводка
    ========================================================= */
 .services__problem-list {
     grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -551,4 +551,140 @@
     .services__problem-sections .services__consultation {
         font-size: 15px;
     }
+}
+
+/* Direction drawings are selected by services.js. */
+.services__detail-graphic {
+    position: relative;
+}
+
+.services__detail-graphic > .services__drawing {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.services__detail-graphic[data-service="cadastral"] .services__drawing--cadastral,
+.services__detail-graphic[data-service="geodesy"] .services__drawing--cadastral,
+.services__detail-graphic[data-service="legal"] .services__drawing--legal {
+    display: block;
+}
+
+.services__direction-hint { position: relative; display: block; width: 100px; height: 18px; margin: 18px 0 0 12px; color: var(--green); }
+.services__direction-hint::before { content: ""; position: absolute; top: 8px; left: 0; right: 0; height: 1px; background: currentColor; }
+.services__direction-hint::after { content: ""; position: absolute; left: 0; top: 5px; width: 6px; height: 6px; border-left: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: rotate(45deg); }
+.services__direction-hint[hidden] { display: none; }
+
+/* Reuse the cadastral drawing for geodesy, keeping only the parcel outline. */
+.services__detail-graphic[data-service="geodesy"] .services__parcel-fill { fill: none; }
+.services__detail-link[hidden] { display: none; }
+
+/* Case descriptions use the full width without a decorative diagram. */
+.services__problem-detail-grid { grid-template-columns: minmax(0, 1fr); }
+
+
+/* Final contact section */
+.contacts-section {
+    position: relative;
+    min-height: min(88vh, 900px);
+    overflow: hidden;
+    padding: 78px 0 30px;
+    border-top: 1px solid rgba(6,41,29,.14);
+    background-color: #f8faf8;
+    background-image:
+        linear-gradient(to right, transparent calc(50% - .5px), rgba(6,41,29,.045) 50%, transparent calc(50% + .5px)),
+        linear-gradient(to bottom, transparent 0, transparent 58px, rgba(6,41,29,.045) 59px, transparent 60px);
+}
+.contacts__container { position: relative; z-index: 1; }
+.contacts__topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 17px;
+    border-bottom: 1px solid rgba(6,41,29,.15);
+    color: rgba(6,41,29,.5);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .17em;
+}
+.contacts__layout {
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(340px, 1.1fr);
+    gap: clamp(40px, 8vw, 120px);
+    align-items: center;
+    min-height: 570px;
+    padding: 54px 0 66px;
+}
+.contacts__intro { max-width: 510px; }
+.contacts__eyebrow { color: #245440; font-size: 10px; font-weight: 600; letter-spacing: .19em; }
+.contacts__intro h2 {
+    margin: 23px 0 20px;
+    color: var(--green);
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(50px, 6.3vw, 88px);
+    font-weight: 400;
+    line-height: .98;
+    letter-spacing: -.065em;
+}
+.contacts__intro p { max-width: 390px; color: var(--text-soft); font-size: 17px; line-height: 1.65; }
+.contacts__consultation {
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    margin-top: 30px;
+    padding: 16px 20px;
+    background: var(--green);
+    color: #fff;
+    font-size: 15px;
+    transition: gap .35s ease, background-color .25s ease;
+}
+.contacts__consultation:hover { gap: 36px; background: #164638; }
+.contacts__consultation span { font-size: 20px; line-height: 1; }
+.contacts__channels { border-top: 1px solid rgba(6,41,29,.18); }
+.contacts__channel {
+    display: grid;
+    grid-template-columns: 34px minmax(0,1fr) 24px;
+    align-items: center;
+    gap: 18px;
+    min-height: 112px;
+    border-bottom: 1px solid rgba(6,41,29,.18);
+    color: var(--green);
+    transition: padding .3s ease, background-color .3s ease;
+}
+.contacts__channel:hover { padding-right: 8px; background: rgba(232,240,235,.42); }
+.contacts__channel-index { align-self: start; padding-top: 30px; color: rgba(6,41,29,.45); font-size: 10px; letter-spacing: .12em; }
+.contacts__channel-info { display: grid; gap: 8px; }
+.contacts__channel-label { color: var(--text-soft); font-size: 13px; }
+.contacts__channel-info strong { font-size: clamp(17px, 2vw, 22px); font-weight: 400; }
+.contacts__channel-arrow { color: rgba(6,41,29,.52); font-size: 19px; transition: transform .3s ease; }
+.contacts__channel:hover .contacts__channel-arrow { transform: translate(3px,-3px); }
+.contacts__footer {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 20px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(6,41,29,.15);
+    color: rgba(6,41,29,.52);
+    font-size: 11px;
+}
+.contacts__brand { color: var(--green); font-size: 11px; font-weight: 600; letter-spacing: .12em; }
+.contacts__back-top { justify-self: end; color: var(--green); }
+.contacts-section a:focus-visible { outline: 2px solid var(--green); outline-offset: 5px; }
+
+@media (max-width: 760px) {
+    .contacts__channel-arrow { display: none; }
+    .contacts-section { min-height: 0; padding: 48px 0 22px; background-image: linear-gradient(to bottom, transparent 0, transparent 38px, rgba(6,41,29,.04) 39px, transparent 40px); }
+    .contacts__topline { font-size: 9px; }
+    .contacts__topline span:last-child { text-align: right; }
+    .contacts__layout { grid-template-columns: minmax(0,1fr); gap: 44px; min-height: 0; padding: 54px 0 48px; }
+    .contacts__intro h2 { font-size: clamp(52px, 13vw, 72px); }
+    .contacts__intro p { font-size: 16px; }
+    .contacts__channel { min-height: 96px; grid-template-columns: 26px minmax(0,1fr) 20px; gap: 12px; }
+    .contacts__channel-index { padding-top: 25px; }
+    .contacts__footer { grid-template-columns: 1fr auto; gap: 14px; font-size: 10px; }
+    .contacts__footer > span { grid-column: 1 / -1; grid-row: 2; }
+    .contacts__back-top { grid-column: 2; grid-row: 1; }
 }

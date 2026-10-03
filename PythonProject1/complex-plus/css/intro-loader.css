@@ -1,5 +1,5 @@
 /* =========================================================
-   COMPLEX PLUS — INTRO LOADER
+   COMPLEX PLUS - INTRO LOADER
    Модульный префикс cp- предотвращает конфликт
    с существующим style.css / mobile.css.
    ========================================================= */
@@ -377,7 +377,7 @@
 }
 
 /* =========================================================
-   CUSTOM CURSOR — только desktop
+   CUSTOM CURSOR - только desktop
    ========================================================= */
 .cp-intro-cursor {
     position: fixed;
@@ -432,7 +432,7 @@ body.cp-intro-cursor-active * {
 }
 
 /* =========================================================
-   DEMO PAGE — только для автономного прототипа
+   DEMO PAGE - только для автономного прототипа
    ========================================================= */
 .demo-page {
     min-height: 100vh;
@@ -479,7 +479,7 @@ body.cp-intro-cursor-active * {
     }
 }
 
-/* MOBILE — отдельная композиция */
+/* MOBILE - отдельная композиция */
 @media (max-width: 760px) {
     .cp-intro-loader__drawing {
         width: 165%;
@@ -567,3 +567,6 @@ html.cp-intro-lock,
 body.cp-intro-lock {
     overflow: hidden !important;
 }
+
+/* Suppress the loader before first paint when returning in the same tab. */
+.cp-intro-seen .cp-intro-loader { display: none; }

@@ -2,13 +2,20 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <script>
+        try {
+            if (sessionStorage.getItem('cp-intro-seen')) {
+                document.documentElement.classList.add('cp-intro-seen');
+            }
+        } catch (_) {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Комплекс Плюс — кадастровые работы</title>
+    <title>Комплекс Плюс - кадастровые работы</title>
 
     <meta
         name="description"
-        content="ООО «Комплекс Плюс» — кадастровые, геодезические и юридические работы в Ростове-на-Дону и Ростовской области."
+        content="ООО «Комплекс Плюс» - кадастровые, геодезические и юридические работы в Ростове-на-Дону и Ростовской области."
     >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,6 +34,8 @@
         href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
         rel="stylesheet"
     >
+    <link rel="stylesheet" href="css/page-transitions.css">
+    <link rel="stylesheet" href="css/consultation.css">
 </head>
 <body>
 <div class="cp-intro-loader" id="cpIntroLoader" aria-hidden="false">
@@ -142,7 +151,7 @@
 <header class="header site-header">
     <div class="container header__inner">
 
-        <a href="#home" class="logo site-header__logo" aria-label="Комплекс Плюс — кадастровые работы">
+        <a href="#home" class="logo site-header__logo" aria-label="Комплекс Плюс - кадастровые работы">
             <span class="logo__title">КОМПЛЕКС ПЛЮС</span>
             <span class="logo__subtitle">Кадастровые работы</span>
         </a>
@@ -150,7 +159,6 @@
         <nav class="navigation site-header__nav" aria-label="Основная навигация">
             <a href="#about" class="navigation__link">О нас</a>
             <a href="#services" class="navigation__link">Услуги</a>
-            <a href="#documents" class="navigation__link">Документы</a>
             <a href="#contacts" class="navigation__link">Контакты</a>
         </nav>
 
@@ -211,7 +219,7 @@
 
             </p>
 
-            <a href="#contacts" class="hero__button">
+            <a href="consultation.html" data-consultation class="hero__button">
                 <span>Получить консультацию</span>
                 <span class="hero__button-arrow">→</span>
             </a>
@@ -259,10 +267,14 @@
 <aside class="hero-scroll" aria-hidden="true">
     <div class="hero-scroll__track">
         <i></i>
-        <div class="hero-scroll__steps"></div>
+        <div class="hero-scroll__steps">
+            <span class="hero-scroll__step" data-section="home">01</span>
+            <span class="hero-scroll__step" data-section="about">02</span>
+            <span class="hero-scroll__step" data-section="services">03</span>
+            <span class="hero-scroll__step" data-section="contacts">04</span>
+        </div>
     </div>
 
-    <span class="hero-scroll__label">SCROLL</span>
 </aside>
 
 <!-- =====================================================
@@ -319,7 +331,7 @@
                             <span class="about__fragment about__fragment--brand">Комплекс Плюс</span>
                         </span>
                         <span class="about__line">
-                            <span class="about__fragment">— команда специалистов</span>
+                            <span class="about__fragment">- команда специалистов</span>
                         </span>
                         <span class="about__line">
                             <span class="about__fragment">с многолетним опытом</span>
@@ -355,34 +367,9 @@
 <script src="js/hero.js"></script>
 <script src="js/about.js"></script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    fetch('services.html')
-        .then(function (response) {
-            if (!response.ok) {
-                throw new Error('Не удалось загрузить services.html');
-            }
-            return response.text();
-        })
-        .then(function (html) {
-            var container = document.getElementById('services-container');
+<script src="js/page.js"></script>
 
-            if (!container) {
-                throw new Error('Не найден #services-container');
-            }
-
-            container.innerHTML = html;
-
-            var script = document.createElement('script');
-            script.src = 'js/services.js';
-
-            document.body.appendChild(script);
-        })
-        .catch(function (error) {
-            console.error('Ошибка Services:', error);
-        });
-});
-</script>
-
+<script src="js/page-transitions.js"></script>
+<script src="js/consultation.js"></script>
 </body>
 </html>

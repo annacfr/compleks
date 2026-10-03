@@ -1,5 +1,5 @@
 /* =========================================================
-   COMPLEX PLUS — HERO INTERACTIONS
+   COMPLEX PLUS - HERO INTERACTIONS
    ========================================================= */
 (function () {
     "use strict";
@@ -65,6 +65,7 @@
         }
 
         document.body.appendChild(cursor);
+        document.body.classList.add("has-custom-cursor");
         cursor.style.setProperty("--hero-green", "#06291d");
 
         let mouseX = -100;
@@ -106,25 +107,13 @@
         document.addEventListener("pointermove", move, { passive: true });
         document.addEventListener("pointerleave", leave, { passive: true });
 
-        document
-            .querySelectorAll("a, button, input, textarea, select, label")
-            .forEach(function (element) {
-                element.addEventListener(
-                    "pointerenter",
-                    function () {
-                        cursor.classList.add("is-active");
-                    },
-                    { passive: true }
-                );
-
-                element.addEventListener(
-                    "pointerleave",
-                    function () {
-                        cursor.classList.remove("is-active");
-                    },
-                    { passive: true }
-                );
-            });
+        // Delegation also covers controls in the asynchronously loaded services.
+        document.addEventListener("pointerover", function (event) {
+            cursor.classList.toggle(
+                "is-active",
+                Boolean(event.target.closest("a, button, input, textarea, select, label"))
+            );
+        }, { passive: true });
 
         render();
 
@@ -157,12 +146,11 @@
         }
 
         const progress = track.querySelector("i");
-        const marker = track.querySelector(".hero-scroll__marker");
         const steps = Array.from(
             scroll.querySelectorAll(".hero-scroll__step")
         );
 
-        if (!progress || !marker || !steps.length) {
+        if (!progress || !steps.length) {
             return;
         }
 
@@ -170,7 +158,6 @@
             "home",
             "about",
             "services",
-            "documents",
             "contacts"
         ];
 
@@ -209,32 +196,15 @@
                 return;
             }
 
-            const maxScroll = Math.max(
-                1,
-                document.documentElement.scrollHeight -
-                window.innerHeight
-            );
-
-            steps.forEach(function (step) {
-                const section = sections.find(function (item) {
-                    return item.id === step.dataset.section;
+            const visibleSteps = steps.filter(function (step) {
+                const exists = sections.some(function (section) {
+                    return section.id === step.dataset.section;
                 });
-
-                if (!section) {
-                    step.style.display = "none";
-                    return;
-                }
-
-                const sectionProgress = clamp(
-                    section.top / maxScroll,
-                    0,
-                    1
-                );
-
-                step.style.display = "block";
-                step.style.top =
-                    (trackHeight * sectionProgress).toFixed(2) +
-                    "px";
+                step.hidden = !exists;
+                return exists;
+            });
+            visibleSteps.forEach(function (step, index) {
+                step.style.top = (trackHeight * index / Math.max(1, visibleSteps.length - 1)).toFixed(2) + "px";
             });
         }
 
@@ -298,11 +268,6 @@
             progress.style.height =
                 y.toFixed(2) + "px";
 
-            marker.style.transform =
-                "translate3d(0, " +
-                y.toFixed(2) +
-                "px, 0) translateY(-50%)";
-
             if (
                 currentProgress !== targetProgress
             ) {
@@ -319,6 +284,7 @@
         }
 
         refresh();
+        document.documentElement.classList.add("has-custom-scroll");
 
         window.addEventListener(
             "scroll",
@@ -335,6 +301,11 @@
             document.getElementById(
                 "services-container"
             );
+
+        window.addEventListener("load", refresh, { once: true });
+        if ("ResizeObserver" in window) {
+            new ResizeObserver(refresh).observe(document.querySelector("main"));
+        }
 
         if (servicesContainer) {
             const observer =

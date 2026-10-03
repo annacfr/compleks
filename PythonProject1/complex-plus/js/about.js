@@ -302,11 +302,7 @@
                 7 * (1 - local);
 
 
-            fragment.style.opacity =
-                String(
-                    0.18 +
-                    local * 0.82
-                );
+            fragment.style.opacity = "1";
 
             fragment.style.filter =
                 "blur(" +
@@ -403,11 +399,7 @@
                     (1 - finalProgress);
 
 
-                character.style.opacity =
-                    (
-                        0.18 +
-                        finalProgress * 0.82
-                    ).toFixed(4);
+                character.style.opacity = "1";
 
                 character.style.filter =
                     "blur(" +
@@ -456,11 +448,7 @@
                 );
 
 
-            line.style.opacity =
-                String(
-                    0.18 +
-                    local * 0.82
-                );
+            line.style.opacity = "1";
 
 
             line.style.filter =
@@ -501,11 +489,7 @@
                     );
 
 
-                character.style.opacity =
-                    (
-                        0.18 +
-                        charProgress * 0.82
-                    ).toFixed(4);
+                character.style.opacity = "1";
 
 
                 character.style.filter =

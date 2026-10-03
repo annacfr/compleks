@@ -323,7 +323,8 @@
       sections.appendChild(element);
     });
     const consultation = document.createElement("a");
-    consultation.href = "#contacts";
+    consultation.href = "consultation.html";
+    consultation.setAttribute("data-consultation", "");
     consultation.className = "services__consultation";
     consultation.textContent = "Получить консультацию →";
     sections.appendChild(consultation);

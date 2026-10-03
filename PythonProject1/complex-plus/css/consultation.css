@@ -1,0 +1,18 @@
+.consultation-dialog { width: min(560px, calc(100% - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 0; border: 1px solid rgba(6,41,29,.18); border-radius: 16px; color: #06291d; background: #fbfcfa; }
+.consultation-dialog::backdrop { background: rgba(6,41,29,.38); backdrop-filter: blur(4px); }
+.consultation-content { position: relative; padding: 40px; }
+.consultation-close { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border: 0; background: transparent; color: inherit; font-size: 28px; cursor: pointer; }
+.consultation-eyebrow { font-size: 10px; letter-spacing: .16em; color: #61756c; }
+.consultation-title { margin: 20px 0 16px; font-family: "Manrope", sans-serif; font-size: clamp(30px, 6vw, 42px); line-height: 1.12; font-weight: 400; letter-spacing: -.04em; }
+.consultation-description { font-size: 16px; line-height: 1.6; color: #61756c; }
+.consultation-options { display: grid; gap: 12px; margin-top: 28px; }
+.consultation-option { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px; width: 100%; padding: 18px; border: 1px solid rgba(6,41,29,.16); background: rgba(232,240,235,.4); color: inherit; text-align: left; font: inherit; cursor: pointer; }
+.consultation-option strong { font-size: 15px; font-weight: 500; }
+.consultation-option span { font-size: 14px; }
+.consultation-option:hover { background: #e8f0eb; }
+.consultation-content :focus-visible { outline: 2px solid #245440; outline-offset: 3px; }
+.consultation-status { min-height: 22px; margin-top: 14px; color: #61756c; font-size: 13px; line-height: 1.5; }
+.consultation-open { overflow: hidden; }
+.consultation-page { max-width: 640px; margin: 32px auto; }
+@media (max-width: 480px) { .consultation-content { padding: 32px 22px 22px; } }
+@media (prefers-reduced-motion: no-preference) { .consultation-dialog[open] { animation: consultationEnter .35s cubic-bezier(.22,1,.36,1); } @keyframes consultationEnter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } } }

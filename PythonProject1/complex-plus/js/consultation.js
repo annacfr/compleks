@@ -1,0 +1,61 @@
+(function () {
+  "use strict";
+  const content = `<div class="consultation-content">
+    <span class="consultation-eyebrow">КОМПЛЕКС ПЛЮС / КОНСУЛЬТАЦИЯ</span>
+    <h1 class="consultation-title" id="consultation-title">Позвоните нам<br>или напишите</h1>
+    <p class="consultation-description">Обсудим вашу задачу и подскажем, с чего начать.</p>
+    <div class="consultation-options">
+      <a class="consultation-option" href="tel:+79381433012"><strong>Позвонить</strong><span>+7 (938) 143-30-12 ↗</span></a>
+      <a class="consultation-option" href="https://t.me/Kompleksplus" target="_blank" rel="noopener noreferrer"><strong>Telegram</strong><span>@Kompleksplus ↗</span></a>
+      <button class="consultation-option" type="button" data-copy-max><strong>MAX</strong><span>@Kompleksplus · скопировать</span></button>
+    </div>
+    <p class="consultation-status" role="status">В MAX найдите нас по имени @Kompleksplus.</p>
+  </div>`;
+  const standalone = document.querySelector(".consultation-page");
+  let dialog;
+  let previousFocus;
+  if (standalone) {
+    standalone.innerHTML = content;
+  } else {
+    dialog = document.createElement("dialog");
+    dialog.className = "consultation-dialog";
+    dialog.setAttribute("aria-labelledby", "consultation-title");
+    dialog.innerHTML = content.replace("<h1 ", "<h2 ").replace("</h1>", "</h2>");
+    const close = document.createElement("button");
+    close.type = "button";
+    close.className = "consultation-close";
+    close.setAttribute("aria-label", "Закрыть окно консультации");
+    close.textContent = "×";
+    dialog.querySelector(".consultation-content").prepend(close);
+    document.body.append(dialog);
+    close.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target !== dialog) return;
+      const box = dialog.getBoundingClientRect();
+      if (event.clientX < box.left || event.clientX > box.right ||
+          event.clientY < box.top || event.clientY > box.bottom) dialog.close();
+    });
+    dialog.addEventListener("close", () => {
+      document.body.classList.remove("consultation-open");
+      previousFocus?.focus({ preventScroll: true });
+    });
+    document.addEventListener("click", (event) => {
+      const trigger = event.target.closest("[data-consultation]");
+      if (!trigger || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      event.stopPropagation();
+      previousFocus = trigger;
+      dialog.showModal();
+      document.body.classList.add("consultation-open");
+    }, true);
+  }
+  (standalone || dialog).querySelector("[data-copy-max]").addEventListener("click", async () => {
+    const status = (standalone || dialog).querySelector(".consultation-status");
+    try {
+      await navigator.clipboard.writeText("@Kompleksplus");
+      status.textContent = "Имя скопировано. Вставьте его в поиск MAX.";
+    } catch (_) {
+      status.textContent = "Найдите нас в MAX: @Kompleksplus.";
+    }
+  });
+})();

@@ -675,6 +675,7 @@
 .contacts-section a:focus-visible { outline: 2px solid var(--green); outline-offset: 5px; }
 
 @media (max-width: 760px) {
+    .contacts__channel-arrow { display: none; }
     .contacts-section { min-height: 0; padding: 48px 0 22px; background-image: linear-gradient(to bottom, transparent 0, transparent 38px, rgba(6,41,29,.04) 39px, transparent 40px); }
     .contacts__topline { font-size: 9px; }
     .contacts__topline span:last-child { text-align: right; }

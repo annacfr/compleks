@@ -7,9 +7,8 @@
     <div class="consultation-options">
       <a class="consultation-option" href="tel:+79381433012"><strong>Позвонить</strong><span>+7 (938) 143-30-12 ↗</span></a>
       <a class="consultation-option" href="https://t.me/Kompleksplus" target="_blank" rel="noopener noreferrer"><strong>Telegram</strong><span>@Kompleksplus ↗</span></a>
-      <button class="consultation-option" type="button" data-copy-max><strong>MAX</strong><span>@Kompleksplus · скопировать</span></button>
+      <a class="consultation-option" href="https://max.ru/u/f9LHodD0cOKSOaq5W45Uo2Mgb6s3G6D5n6Xa5hR9CXnhouzXzoUq7yEQfLc" target="_blank" rel="noopener noreferrer"><strong>MAX</strong><span>@Kompleksplus ↗</span></a>
     </div>
-    <p class="consultation-status" role="status">В MAX найдите нас по имени @Kompleksplus.</p>
   </div>`;
   const standalone = document.querySelector(".consultation-page");
   let dialog;
@@ -53,13 +52,4 @@
       document.body.classList.add("consultation-open");
     }, true);
   }
-  (standalone || dialog).querySelector("[data-copy-max]").addEventListener("click", async () => {
-    const status = (standalone || dialog).querySelector(".consultation-status");
-    try {
-      await navigator.clipboard.writeText("@Kompleksplus");
-      status.textContent = "Имя скопировано. Вставьте его в поиск MAX.";
-    } catch (_) {
-      status.textContent = "Найдите нас в MAX: @Kompleksplus.";
-    }
-  });
 })();

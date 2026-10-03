@@ -1,5 +1,5 @@
 /* =========================================================
-   SERVICES — EDITORIAL / INTERACTIVE SYSTEM
+   SERVICES - EDITORIAL / INTERACTIVE SYSTEM
    Отдельный файл блока Services.
    ========================================================= */
 
@@ -196,7 +196,7 @@
 .services__graphic-label--a { left:3%; top:3%; }.services__graphic-label--b{right:2%;top:16%;}.services__graphic-label--c{right:2%;bottom:7%;}.services__graphic-label--d{left:3%;bottom:7%;}
 
 /* =========================================================
-   ЗАДАЧИ / КЕЙСЫ — обновлённая структура
+   ЗАДАЧИ / КЕЙСЫ - обновлённая структура
    ========================================================= */
 .services__problems-head {
     display:grid;
@@ -449,7 +449,7 @@
 .services::before { background-image:none; border-top:1px solid rgba(6,41,29,.035); pointer-events:none; }
 
 /* =========================================================
-   SERVICES — КЕЙСЫ: 6 задач + подробная информационная сводка
+   SERVICES - КЕЙСЫ: 6 задач + подробная информационная сводка
    ========================================================= */
 .services__problem-list {
     grid-template-columns: repeat(6, minmax(0, 1fr));

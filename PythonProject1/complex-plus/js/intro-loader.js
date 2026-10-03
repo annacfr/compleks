@@ -1,5 +1,5 @@
 /*
- * COMPLEX PLUS — INTRO LOADER
+ * COMPLEX PLUS - INTRO LOADER
  *
  * Подключение:
  * <script src="js/intro-loader.js"></script>

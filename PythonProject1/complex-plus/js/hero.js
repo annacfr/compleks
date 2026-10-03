@@ -1,5 +1,5 @@
 /* =========================================================
-   COMPLEX PLUS — HERO INTERACTIONS
+   COMPLEX PLUS - HERO INTERACTIONS
    ========================================================= */
 (function () {
     "use strict";

@@ -7,7 +7,7 @@
     <div class="consultation-options">
       <a class="consultation-option" href="tel:+79381433012"><strong>Позвонить</strong><span>+7 (938) 143-30-12 ↗</span></a>
       <a class="consultation-option" href="https://t.me/Kompleksplus" target="_blank" rel="noopener noreferrer"><strong>Telegram</strong><span>@Kompleksplus ↗</span></a>
-      <a class="consultation-option" href="https://max.ru/u/f9LHodD0cOKSOaq5W45Uo2Mgb6s3G6D5n6Xa5hR9CXnhouzXzoUq7yEQfLc" target="_blank" rel="noopener noreferrer"><strong>MAX</strong><span>@Kompleksplus ↗</span></a>
+      <a class="consultation-option" href="https://max.ru/u/f9LHodD0cOKSOaq5W45Uo2Mgb6s3G6D5n6Xa5hR9CXnhouzXzoUq7yEQfLc" target="_blank" rel="noopener noreferrer"><strong>MAX</strong><span><strong>@Kompleksplus</strong> ↗</span></a>
     </div>
   </div>`;
   const standalone = document.querySelector(".consultation-page");

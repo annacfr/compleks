@@ -1980,42 +1980,13 @@ html.has-custom-scroll::-webkit-scrollbar, html.has-custom-scroll body::-webkit-
 
 .about__fragment {
     position: relative;
-
     display: inline-block;
-
     opacity: 1;
-
-    filter: blur(5px);
-
-    transform:
-        translate3d(0, 7px, 0);
-
-    will-change:
-        opacity,
-        transform,
-        filter;
 }
 
-
-.about__char {
-    display: inline-block;
-
-    opacity: 1;
-
-    filter: blur(5.5px);
-
-    transform:
-        translate3d(0, 3px, 0);
-
-    will-change:
-        opacity,
-        transform,
-        filter;
-
-    /*
-     * Никаких CSS transition здесь:
-     * движение полностью управляется scroll progress.
-     */
+.about-section.is-scroll-ready .about__fragment {
+    filter: blur(4.5px);
+    will-change: filter;
 }
 
 
@@ -2172,18 +2143,12 @@ html.has-custom-scroll::-webkit-scrollbar, html.has-custom-scroll body::-webkit-
 
 .about__text-line {
     display: block;
-
     opacity: 1;
+}
 
-    filter: blur(5px);
-
-    transform:
-        translate3d(0, 5px, 0);
-
-    will-change:
-        opacity,
-        transform,
-        filter;
+.about-section.is-scroll-ready .about__text-line {
+    filter: blur(2.5px);
+    will-change: filter;
 }
 
 
@@ -2539,46 +2504,11 @@ html.has-custom-scroll::-webkit-scrollbar, html.has-custom-scroll body::-webkit-
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-
-    .about-section {
-        height: auto;
-
-        min-height: 100vh;
-    }
-
-
-    .about__sticky {
-        position: relative;
-
-        height: auto;
-
-        min-height: 100vh;
-    }
-
-
-    .about__fragment,
-    .about__char,
-    .about__text-line,
     .about__technical,
     .about__boundary {
         transition: none;
         animation: none;
-
-        filter: none;
-
         transform: none;
-
-        opacity: 1;
-    }
-
-
-    .about__technical {
-        opacity: .12;
-    }
-
-
-    .about__boundary {
-        opacity: .10;
     }
 }
 /* HEADER V2 - shared visual language; Hero/loader untouched */

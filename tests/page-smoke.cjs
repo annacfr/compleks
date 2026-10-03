@@ -10,6 +10,7 @@ const repositoryRoot = path.resolve(__dirname, "..");
 const root = path.join(repositoryRoot, "PythonProject1/complex-plus");
 const pages = [
   "index.html",
+  "consultation.html",
   "service-cadastral.html",
   "service-geodesy.html",
   "service-legal.html",
@@ -82,6 +83,10 @@ const server = http.createServer(async (request, response) => {
             missing.push(response.url());
         });
         await page.goto(base + "/" + file);
+        const brokenImages = await page.locator("img").evaluateAll((images) =>
+          images.filter((image) => !image.complete || !image.naturalWidth).map((image) => image.src),
+        );
+        assert.deepEqual(brokenImages, [], file + " undecodable images");
         if (file === "index.html") {
           await page.waitForSelector(".services__problem-section");
           assert.equal(
@@ -291,7 +296,7 @@ const server = http.createServer(async (request, response) => {
       ),
     );
     assert(
-      entrance.every((card, i) => !i || card.delay > entrance[i - 1].delay),
+      entrance.every((card, i) => !i || card.delay >= entrance[i - 1].delay),
     );
     await animatedPage.waitForFunction(() =>
       [...document.querySelectorAll(".direction-card")].every(

@@ -17,7 +17,7 @@
     .direction-page .direction-card:nth-child(1) { animation-delay: .32s; }
     .direction-page .direction-card:nth-child(2) { animation-delay: .42s; }
     .direction-page .direction-card:nth-child(3) { animation-delay: .52s; }
-    .direction-page .direction-card:nth-child(4) { animation-delay: .62s; }
+    .direction-page .direction-card:nth-child(n+4) { animation-delay: .62s; }
     .direction-page .direction-back { animation-delay: .72s; }
 
     @keyframes directionReveal {

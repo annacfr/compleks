@@ -296,7 +296,7 @@
              */
 
             const baseBlur =
-                4.5 * (1 - local);
+                6.5 * (1 - local);
 
             const baseY =
                 7 * (1 - local);
@@ -304,8 +304,8 @@
 
             fragment.style.opacity =
                 String(
-                    0.12 +
-                    local * 0.88
+                    0.18 +
+                    local * 0.82
                 );
 
             fragment.style.filter =
@@ -399,12 +399,15 @@
 
 
                 const blur =
-                    4 *
+                    5.5 *
                     (1 - finalProgress);
 
 
                 character.style.opacity =
-                    finalProgress.toFixed(4);
+                    (
+                        0.18 +
+                        finalProgress * 0.82
+                    ).toFixed(4);
 
                 character.style.filter =
                     "blur(" +
@@ -455,14 +458,14 @@
 
             line.style.opacity =
                 String(
-                    0.12 +
-                    local * 0.88
+                    0.18 +
+                    local * 0.82
                 );
 
 
             line.style.filter =
                 "blur(" +
-                (3.5 * (1 - local)).toFixed(2) +
+                (5 * (1 - local)).toFixed(2) +
                 "px)";
 
 
@@ -499,13 +502,16 @@
 
 
                 character.style.opacity =
-                    charProgress.toFixed(4);
+                    (
+                        0.18 +
+                        charProgress * 0.82
+                    ).toFixed(4);
 
 
                 character.style.filter =
                     "blur(" +
                     (
-                        3 *
+                        4 *
                         (1 - charProgress)
                     ).toFixed(2) +
                     "px)";

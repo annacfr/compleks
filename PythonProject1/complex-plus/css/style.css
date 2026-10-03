@@ -1925,6 +1925,8 @@ html.has-custom-scroll::-webkit-scrollbar, html.has-custom-scroll body::-webkit-
     text-align: center;
 
     position: relative;
+
+    transform: translateY(-5vh);
 }
 
 
@@ -2412,6 +2414,8 @@ html.has-custom-scroll::-webkit-scrollbar, html.has-custom-scroll body::-webkit-
 
     .about__copy {
         width: 100%;
+
+        transform: translateY(-3vh);
     }
 
 

@@ -14,6 +14,7 @@
   const standalone = document.querySelector(".consultation-page");
   let dialog;
   let previousFocus;
+  const siteCursor = document.querySelector(".hero-cursor");
   if (standalone) {
     standalone.innerHTML = content;
   } else {
@@ -37,6 +38,7 @@
     });
     dialog.addEventListener("close", () => {
       document.body.classList.remove("consultation-open");
+      if (siteCursor) document.body.append(siteCursor);
       previousFocus?.focus({ preventScroll: true });
     });
     document.addEventListener("click", (event) => {
@@ -46,6 +48,8 @@
       event.stopPropagation();
       previousFocus = trigger;
       dialog.showModal();
+      // A modal dialog enters the browser top layer, above the page cursor.
+      if (siteCursor) dialog.append(siteCursor);
       document.body.classList.add("consultation-open");
     }, true);
   }

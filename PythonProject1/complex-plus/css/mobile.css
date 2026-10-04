@@ -310,17 +310,6 @@
         line-height: 1.35;
     }
 
-    /* На мобильном текстовый блок «О нас» не должен обрезаться
-       из-за двухколоночной desktop-сетки и смещения правого блока. */
-
-    .about__statement {
-        width: 100%;
-        max-width: none;
-        min-width: 0;
-        padding-top: 0;
-        transform: none;
-    }
-
     /* Районы: координаты вычисляются JS по одной и той же маске.
        Не задаём отдельные translate для районов в mobile.css. */
     .district-labels .district-name[data-district] {

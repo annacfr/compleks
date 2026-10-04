@@ -194,7 +194,7 @@
     .services__problems-head {
         grid-template-columns: minmax(0, 1fr);
         gap: 20px;
-        padding: 40px 0 24px;
+        padding: 88px 0 24px;
     }
 
     .services__problems-title { font-size: clamp(36px, 10vw, 48px); }

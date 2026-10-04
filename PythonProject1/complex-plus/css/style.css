@@ -2025,6 +2025,11 @@ html.has-custom-scroll::-webkit-scrollbar, html.has-custom-scroll body::-webkit-
 .about__conclusion--green {
     margin-top: clamp(44px, 6vh, 72px);
     color: var(--green);
+    font-size: clamp(43px, 4.3vw, 58px);
+}
+
+.about__conclusion--green strong {
+    font-weight: 700;
 }
 
 .about__identity {
@@ -2043,6 +2048,7 @@ html.has-custom-scroll::-webkit-scrollbar, html.has-custom-scroll body::-webkit-
 
 .about__fields {
     margin: 26px 0 0;
+    max-width: 650px;
     color: var(--text-soft);
     font-family: "Inter", sans-serif;
     font-size: clamp(15px, 1.2vw, 17px);
@@ -2051,14 +2057,6 @@ html.has-custom-scroll::-webkit-scrollbar, html.has-custom-scroll body::-webkit-
 
 .about__closing {
     margin-top: clamp(60px, 8vh, 92px);
-}
-
-.about__closing > span {
-    display: block;
-    width: 48px;
-    height: 1px;
-    margin-bottom: 26px;
-    background: var(--green);
 }
 
 .about__closing p {
@@ -2138,10 +2136,6 @@ html.has-custom-scroll::-webkit-scrollbar, html.has-custom-scroll body::-webkit-
         line-height: 1.55;
     }
 
-    .about__step-copy p br {
-        display: none;
-    }
-
     .about__final {
         min-height: 108svh;
         margin-left: 0;
@@ -2156,6 +2150,7 @@ html.has-custom-scroll::-webkit-scrollbar, html.has-custom-scroll body::-webkit-
 
     .about__conclusion--green {
         margin-top: 42px;
+        font-size: clamp(30px, 8.7vw, 37px);
     }
 
     .about__identity {
@@ -2171,10 +2166,6 @@ html.has-custom-scroll::-webkit-scrollbar, html.has-custom-scroll body::-webkit-
         margin-top: 22px;
         font-size: 15px;
         line-height: 1.6;
-    }
-
-    .about__fields br {
-        display: none;
     }
 
     .about__closing {

@@ -103,6 +103,81 @@
     }
 
 
+    // SVG overlays follow the actual glyph positions, including mobile wrapping.
+    // The original text stays in the DOM for selection and screen readers.
+    const ns = "http://www.w3.org/2000/svg";
+    const measure = document.createElement("canvas").getContext("2d");
+    const inkLines = new Map();
+
+    function prepareInk() {
+        if (reducedMotion || !measure) return;
+        [...fragments, ...textLines].forEach(function (line) {
+            let ink = inkLines.get(line);
+            if (!ink) {
+                const source = document.createElement("span");
+                source.className = "about__ink-source";
+                source.append(...line.childNodes);
+                const svg = document.createElementNS(ns, "svg");
+                svg.classList.add("about__ink");
+                svg.setAttribute("aria-hidden", "true");
+                svg.setAttribute("focusable", "false");
+                line.append(source, svg);
+                ink = { source, svg, glyphs: [] };
+                inkLines.set(line, ink);
+            }
+            ink.svg.replaceChildren();
+            ink.glyphs = [];
+            const box = line.getBoundingClientRect();
+            ink.svg.setAttribute("viewBox", `0 0 ${box.width} ${box.height}`);
+            const walker = document.createTreeWalker(ink.source, NodeFilter.SHOW_TEXT);
+            let node;
+            while ((node = walker.nextNode())) {
+                const style = getComputedStyle(node.parentElement);
+                measure.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+                const metrics = measure.measureText("Hg");
+                const ascent = metrics.fontBoundingBoxAscent || parseFloat(style.fontSize) * .8;
+                const descent = metrics.fontBoundingBoxDescent || parseFloat(style.fontSize) * .2;
+                for (let i = 0; i < node.length; i++) {
+                    if (/\s/.test(node.textContent[i])) continue;
+                    const range = document.createRange();
+                    range.setStart(node, i);
+                    range.setEnd(node, i + 1);
+                    const rect = range.getBoundingClientRect();
+                    const glyph = document.createElementNS(ns, "text");
+                    glyph.textContent = node.textContent[i];
+                    glyph.setAttribute("x", rect.left - box.left);
+                    glyph.setAttribute("y", rect.top - box.top + (rect.height - ascent - descent) / 2 + ascent);
+                    glyph.style.fontFamily = style.fontFamily;
+                    glyph.style.fontSize = style.fontSize;
+                    glyph.style.fontWeight = style.fontWeight;
+                    glyph.style.stroke = style.color;
+                    const length = parseFloat(style.fontSize) * 4;
+                    glyph.style.strokeDasharray = length;
+                    glyph.style.strokeDashoffset = length;
+                    ink.svg.append(glyph);
+                    ink.glyphs.push({ glyph, length });
+                }
+            }
+        });
+        section.classList.add("is-scroll-ready");
+    }
+
+    function drawInk(lines, starts, ends, progress) {
+        lines.forEach(function (line, index) {
+            const ink = inkLines.get(line);
+            if (!ink) return;
+            const local = range(progress, starts[index] ?? starts[0], ends[index] ?? ends[0]);
+            const fill = range(local, .55, 1);
+            ink.source.style.opacity = String(.14 + .86 * fill);
+            ink.svg.style.opacity = String(1 - fill);
+            ink.glyphs.forEach(function ({ glyph, length }, i) {
+                const stagger = i / Math.max(1, ink.glyphs.length - 1) * .18;
+                const draw = range(local, stagger, .7 + stagger);
+                glyph.style.strokeDashoffset = String(length * (1 - draw));
+            });
+        });
+    }
+
     /* =========================================================
        MAIN RENDER
        ========================================================= */
@@ -112,21 +187,8 @@
         progress = clamp(progress);
 
 
-        // Весь текст уже виден. Прокрутка меняет только резкость строк.
-        const lineStarts = [0.07, 0.26, 0.45, 0.64, 0.82];
-        const lineEnds = [0.28, 0.47, 0.66, 0.85, 0.96];
-        const textStarts = [0.88, 0.925, 0.955];
-        const textEnds = [0.98, 1, 1];
-
-        function sharpen(lines, starts, ends, blur) {
-            lines.forEach(function (line, index) {
-                const local = range(progress, starts[index] ?? starts[0], ends[index] ?? ends[0]);
-                line.style.filter = "blur(" + (blur * (1 - local)).toFixed(2) + "px)";
-            });
-        }
-
-        sharpen(fragments, lineStarts, lineEnds, 4.5);
-        sharpen(textLines, textStarts, textEnds, 2.5);
+        drawInk(fragments, [0.02, .18, .34, .50, .66], [.28, .44, .60, .76, .92], progress);
+        drawInk(textLines, [.76, .81, .86], [.94, .97, 1], progress);
 
         /* =====================================================
            3. GEOMETRY
@@ -379,7 +441,7 @@
 
     window.addEventListener(
         "resize",
-        requestUpdate,
+        function () { prepareInk(); requestUpdate(); },
         {
             passive: true
         }
@@ -391,13 +453,11 @@
         document.fonts.ready
     ) {
 
-        document.fonts.ready.then(
-            requestUpdate
-        );
+        document.fonts.ready.then(function () { prepareInk(); requestUpdate(); });
     }
 
 
-    section.classList.add("is-scroll-ready");
+    prepareInk();
     update();
 
 })();

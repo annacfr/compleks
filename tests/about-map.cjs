@@ -1,4 +1,4 @@
-// Regression coverage: decoded map, blur-only About, viewport and consultation.
+// Regression coverage: decoded map, stroke About, viewport and consultation.
 const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 const fs = require('node:fs/promises');
@@ -40,21 +40,21 @@ const server = http.createServer(async (req,res) => {
    for(const progress of [0,.15,.5,1,0]) {
     await page.evaluate(p=>{const s=document.querySelector('.about-section');window.scrollTo({top:s.getBoundingClientRect().top+scrollY+(s.offsetHeight-innerHeight)*p,behavior:'instant'});},progress);
     await page.waitForTimeout(100);
-    const result=await page.locator('.about__fragment,.about__text-line').evaluateAll(es=>es.map(e=>({text:e.textContent,opacity:getComputedStyle(e).opacity,blur:parseFloat(getComputedStyle(e).filter.slice(5)),transform:getComputedStyle(e).transform})));
-    assert(result.every(e=>e.opacity==='1'&&e.transform==='none'));
-    if(progress===0) assert(result.every(e=>e.blur>=2.49),JSON.stringify(result));
-    if(progress===1) assert(result.every(e=>e.blur===0),JSON.stringify(result));
+    const result=await page.locator('.about__fragment,.about__text-line').evaluateAll(es=>es.map(e=>({text:(e.querySelector('.about__ink-source')||e).textContent,opacity:getComputedStyle(e.querySelector('.about__ink-source')||e).opacity,filter:getComputedStyle(e).filter,transform:getComputedStyle(e).transform,offset:e.querySelector('svg text')?.style.strokeDashoffset})));
+    assert(result.every(e=>e.filter==='none'&&e.transform==='none'));
+    if(progress===0&&reducedMotion==='no-preference') assert(result.every(e=>+e.opacity===.14&&+e.offset>0),JSON.stringify(result));
+    if(progress===1||reducedMotion==='reduce') assert(result.every(e=>e.opacity==='1'),JSON.stringify(result));
     samples.push(result);
-    if([390,1440].includes(width)&&reducedMotion==='no-preference'&&[0,.5,1].includes(progress))await page.screenshot({path:'/tmp/about-'+width+'-'+progress+'.png'});
+    if([390,1440].includes(width)&&reducedMotion==='no-preference'&&[0,.5,1].includes(progress))await page.screenshot({path:'/tmp/stroke-'+width+'-'+progress+'.png'});
    }
-   assert(samples[1][0].blur<samples[0][0].blur&&samples[1][0].blur>0);
+   if(reducedMotion==='no-preference') assert(+samples[1][0].offset<+samples[0][0].offset);
    assert.deepEqual(samples[0],samples[4]);
    await page.locator('.hero__button').click();
    await page.waitForSelector('dialog[open]');
    await page.keyboard.press('Escape');
    assert.equal(await page.locator('dialog[open]').count(),0);
    assert.deepEqual(errors,[]);assert.deepEqual(missing,[]);
-   console.log('PASS map, blur start/middle/end/reverse, menu, dialog, overflow, console',width,reducedMotion);
+   console.log('PASS map, stroke start/middle/end/reverse, menu, dialog, overflow, console',width,reducedMotion);
    await page.close();
   }
  } finally {await browser.close();await new Promise(r=>server.close(r));}

@@ -1,0 +1,1248 @@
+<!doctype html><html lang="ru"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>О нас — прорисовка штрихами</title><style>*{box-sizing:border-box}body{margin:0;background:#fbfcfa;font-family:Arial,sans-serif} .preview-hint{position:fixed;top:18px;left:0;right:0;z-index:10;text-align:center;font:10px/1.4 Arial,sans-serif;letter-spacing:.12em;color:#64776f;pointer-events:none}.about-section {
+    position: relative;
+    height: 190vh;
+    min-height: 0;
+    overflow: visible;
+
+    background: #fbfcfa;
+
+    color: #1d4035;
+}
+
+
+.about__stage {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+}
+
+
+.about__sticky {
+    position: sticky;
+
+    top: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    min-height: 680px;
+
+    display: flex;
+    align-items: center;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.about__inner {
+    position: relative;
+
+    z-index: 5;
+
+    width: min(
+        calc(100% - 120px),
+        1320px
+    );
+
+    height: 100%;
+
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 92px 0 64px;
+}
+
+
+.about__meta {
+    position: absolute;
+
+    top: 78px;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    pointer-events: none;
+}
+
+
+.about__eyebrow,
+.about__index {
+    color: rgba(65, 86, 78, .55);
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 9px;
+    line-height: 1;
+
+    font-weight: 400;
+
+    letter-spacing: .22em;
+
+    text-transform: uppercase;
+}
+
+
+.about__index {
+    color: rgba(65, 86, 78, .38);
+}
+
+
+/* =========================================================
+   MAIN COPY
+   ========================================================= */
+
+.about__copy {
+    width: min(
+        1180px,
+        100%
+    );
+
+    margin: 0 auto;
+
+    text-align: center;
+
+    position: relative;
+
+    transform: translateY(-5vh);
+}
+
+
+.about__statement {
+    margin: 0 auto;
+
+    width: 100%;
+
+    color: #1d4035;
+
+    /*
+     * Manrope остаётся единственным шрифтом,
+     * потому что он уже подключён в index.html.
+     *
+     * Размер уменьшен и начертание облегчено,
+     * чтобы приблизиться к пропорциям референса.
+     */
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: clamp(
+        42px,
+        4.15vw,
+        66px
+    );
+
+    line-height: 1.08;
+
+    font-weight: 400;
+
+    letter-spacing: -.052em;
+
+    text-align: center;
+}
+
+
+.about__line {
+    position: relative;
+
+    display: block;
+
+    width: 100%;
+
+    overflow: visible;
+}
+
+
+/* =========================================================
+   CHARACTER ASSEMBLY
+   ========================================================= */
+
+.about__fragment {
+    position: relative;
+    display: inline-block;
+    opacity: 1;
+}
+
+.about__ink-source { opacity: 1; }
+.about-section.is-scroll-ready .about__ink-source { opacity: .14; }
+.about__ink {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    fill: none;
+    stroke-width: .65px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.about__ink text { vector-effect: non-scaling-stroke; }
+
+
+.about__fragment--brand {
+    color: #153f34;
+
+    font-weight: 700;
+
+    letter-spacing: -.055em;
+}
+
+
+.about__fragment em {
+    color: #365d50;
+
+    font-style: normal;
+
+    font-weight: 400;
+}
+
+
+/* =========================================================
+   DECORATIVE CORNERS AROUND BRAND
+   =========================================================
+
+   Не карточка и не рамка.
+   Только четыре лёгких технических уголка,
+   как в референсе.
+   ========================================================= */
+
+.about__line--brand {
+    display: inline-block;
+
+    width: auto;
+
+    padding: 0 22px;
+}
+
+
+.about__line--brand::before,
+.about__line--brand::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+
+    width: 13px;
+    height: 13px;
+
+    pointer-events: none;
+
+    transform: translateY(-50%);
+}
+
+
+/*
+ * Левая часть:
+ * верхний и нижний угол.
+ */
+
+.about__line--brand::before {
+    left: 0;
+
+    background:
+        linear-gradient(
+            #48675d,
+            #48675d
+        ) left top / 8px 1px no-repeat,
+
+        linear-gradient(
+            #48675d,
+            #48675d
+        ) left top / 1px 8px no-repeat,
+
+        linear-gradient(
+            #48675d,
+            #48675d
+        ) left bottom / 8px 1px no-repeat,
+
+        linear-gradient(
+            #48675d,
+            #48675d
+        ) left bottom / 1px 8px no-repeat;
+
+    opacity: .72;
+}
+
+
+/*
+ * Правая часть:
+ * верхний и нижний угол.
+ */
+
+.about__line--brand::after {
+    right: 0;
+
+    background:
+        linear-gradient(
+            #48675d,
+            #48675d
+        ) right top / 8px 1px no-repeat,
+
+        linear-gradient(
+            #48675d,
+            #48675d
+        ) right top / 1px 8px no-repeat,
+
+        linear-gradient(
+            #48675d,
+            #48675d
+        ) right bottom / 8px 1px no-repeat,
+
+        linear-gradient(
+            #48675d,
+            #48675d
+        ) right bottom / 1px 8px no-repeat;
+
+    opacity: .72;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.about__text {
+    width: min(
+        700px,
+        100%
+    );
+
+    margin: 42px auto 0;
+
+    color: #64776f;
+
+    font-family: "Inter", sans-serif;
+
+    font-size: clamp(
+        14px,
+        1.08vw,
+        17px
+    );
+
+    line-height: 1.58;
+
+    font-weight: 400;
+
+    letter-spacing: -.012em;
+
+    text-align: center;
+}
+
+
+.about__text-line {
+    position: relative;
+    display: block;
+    opacity: 1;
+}
+
+
+
+
+/* =========================================================
+   GEOMETRY
+   ========================================================= */
+
+.about__geometry {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+.about__drawing {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+}
+
+
+/*
+ * Главная идея:
+ * геометрия теперь намного тише текста.
+ */
+
+.about__drawing line,
+.about__drawing path,
+.about__drawing circle {
+    fill: none;
+
+    stroke: rgba(
+        76,
+        103,
+        94,
+        .10
+    );
+
+    stroke-width: 1;
+
+    vector-effect: non-scaling-stroke;
+}
+
+
+.about__grid {
+    opacity: .22;
+}
+
+
+.about__boundary {
+    opacity: .12;
+
+    will-change:
+        opacity,
+        transform;
+}
+
+
+.about__cross {
+    transform-origin:
+        720px 444px;
+}
+
+
+.about__cross circle {
+    fill: #55766b;
+
+    stroke: none;
+}
+
+
+/* =========================================================
+   TECHNICAL LABELS
+   ========================================================= */
+
+.about__technical {
+    position: absolute;
+
+    z-index: 2;
+
+    color: rgba(
+        70,
+        91,
+        83,
+        .18
+    );
+
+    font-family: "Inter", sans-serif;
+
+    font-size: 8px;
+
+    line-height: 1;
+
+    font-weight: 400;
+
+    letter-spacing: .19em;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    will-change:
+        opacity,
+        transform;
+}
+
+
+.about__technical--a {
+    left: 9%;
+    top: 19%;
+}
+
+
+.about__technical--b {
+    right: 10%;
+    top: 27%;
+}
+
+
+.about__technical--c {
+    left: 11%;
+    bottom: 23%;
+}
+
+
+.about__technical--d {
+    right: 13%;
+    bottom: 19%;
+}
+
+
+.about__technical--e {
+    left: 24%;
+    top: 31%;
+
+    color: rgba(
+        65,
+        91,
+        82,
+        .20
+    );
+}
+
+
+.about__technical--f {
+    right: 25%;
+    bottom: 31%;
+
+    color: rgba(
+        65,
+        91,
+        82,
+        .20
+    );
+}
+
+
+/* =========================================================
+   COMPLETE STATE
+   ========================================================= */
+
+.about-section.is-complete
+.about__technical {
+    color: rgba(
+        70,
+        91,
+        83,
+        .14
+    );
+}
+
+
+.about-section.is-complete
+.about__boundary {
+    opacity: .09;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .about-section {
+        height: 180vh;
+    }
+
+
+    .about__sticky {
+        height: 100vh;
+
+        min-height: 620px;
+    }
+
+
+    .about__inner {
+        width: calc(100% - 32px);
+
+        padding:
+            82px
+            0
+            42px;
+    }
+
+
+    .about__meta {
+        top: 72px;
+    }
+
+
+    .about__eyebrow,
+    .about__index {
+        font-size: 7px;
+
+        letter-spacing: .17em;
+    }
+
+
+    .about__copy {
+        width: 100%;
+
+        transform: translateY(-3vh);
+    }
+
+
+    .about__statement {
+        font-size:
+            clamp(
+                30px,
+                8.2vw,
+                42px
+            );
+
+        line-height: 1.10;
+
+        letter-spacing: -.045em;
+    }
+
+
+    .about__line {
+        width: 100%;
+    }
+
+
+    .about__line--brand {
+        width: auto;
+
+        max-width: 100%;
+
+        padding:
+            0 16px;
+    }
+
+
+    .about__line--brand::before,
+    .about__line--brand::after {
+        width: 10px;
+        height: 10px;
+    }
+
+
+    .about__fragment--brand {
+        letter-spacing: -.05em;
+    }
+
+
+    .about__text {
+        width: 100%;
+
+        margin-top: 30px;
+
+        font-size: 13px;
+
+        line-height: 1.52;
+    }
+
+
+    .about__text-line {
+        display: block;
+    }
+
+
+    .about__geometry {
+        opacity: .72;
+    }
+
+
+    .about__grid {
+        opacity: .14;
+    }
+
+
+    .about__technical {
+        font-size: 6px;
+
+        letter-spacing: .12em;
+    }
+
+
+    .about__technical--a {
+        left: 7%;
+        top: 16%;
+    }
+
+
+    .about__technical--b {
+        right: 7%;
+        top: 23%;
+    }
+
+
+    .about__technical--c {
+        left: 7%;
+        bottom: 19%;
+    }
+
+
+    .about__technical--d {
+        right: 7%;
+        bottom: 15%;
+    }
+
+
+    .about__technical--e,
+    .about__technical--f {
+        display: none;
+    }
+
+
+    .about__drawing {
+        inset:
+            -8%
+            -10%;
+
+        width: 120%;
+        height: 116%;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .about__technical,
+    .about__boundary {
+        transition: none;
+        animation: none;
+        transform: none;
+    }
+}
+</style><body><div class="preview-hint">ЭКСПЕРИМЕНТ «О НАС» · ЛИСТАЙТЕ ВНИЗ И ОБРАТНО</div><section class="about about-section" id="about">
+    <div class="about__stage">
+        <div class="about__sticky">
+            <div class="about__geometry" aria-hidden="true">
+                <svg class="about__drawing" viewBox="0 0 1440 900" preserveAspectRatio="none">
+                    <g class="about__grid">
+                        <line x1="110" y1="90" x2="1330" y2="90"/>
+                        <line x1="110" y1="810" x2="1330" y2="810"/>
+                        <line x1="720" y1="60" x2="720" y2="840"/>
+                        <line x1="180" y1="450" x2="1260" y2="450"/>
+                    </g>
+                    <g class="about__boundary about__boundary--left">
+                        <path d="M130 250 H420 V180 H585 V330 H510 V610 H320 V690 H130 Z"/>
+                        <path d="M215 250 V690 M320 180 V610 M420 180 V330"/>
+                    </g>
+                    <g class="about__boundary about__boundary--right">
+                        <path d="M860 210 H1160 V300 H1300 V620 H1100 V720 H850 V540 H930 V380 H860 Z"/>
+                        <path d="M1020 210 V380 M1160 300 V620 M1100 620 V720"/>
+                    </g>
+                    <g class="about__cross">
+                        <line x1="690" y1="414" x2="750" y2="474"/>
+                        <line x1="750" y1="414" x2="690" y2="474"/>
+                        <circle cx="720" cy="444" r="4"/>
+                    </g>
+                    <g class="about__dimension">
+                        <line x1="250" y1="150" x2="500" y2="150"/>
+                        <line x1="250" y1="142" x2="250" y2="158"/>
+                        <line x1="500" y1="142" x2="500" y2="158"/>
+                        <line x1="1010" y1="750" x2="1220" y2="750"/>
+                        <line x1="1010" y1="742" x2="1010" y2="758"/>
+                        <line x1="1220" y1="742" x2="1220" y2="758"/>
+                    </g>
+                </svg>
+
+                <span class="about__technical about__technical--e">X 248.16</span>
+                <span class="about__technical about__technical--f">Y 731.04</span>
+            </div>
+
+            <div class="container about__inner">
+                <div class="about__meta">
+                    <span class="about__eyebrow">О НАС</span>
+                    <span class="about__index">02 / ABOUT</span>
+                </div>
+
+                <div class="about__copy">
+                    <p class="about__statement">
+                        <span class="about__line about__line--brand">
+                            <span class="about__fragment about__fragment--brand">Комплекс Плюс</span>
+                        </span>
+                        <span class="about__line">
+                            <span class="about__fragment">- команда специалистов</span>
+                        </span>
+                        <span class="about__line">
+                            <span class="about__fragment">с многолетним опытом</span>
+                        </span>
+                        <span class="about__line">
+                            <span class="about__fragment">в сфере <em>кадастровых, геодезических</em></span>
+                        </span>
+                        <span class="about__line">
+                            <span class="about__fragment"><em>и юридических работ.</em></span>
+                        </span>
+                    </p>
+
+                    <p class="about__text">
+                        <span class="about__text-line">Мы сопровождаем задачи от установления и уточнения</span>
+                        <span class="about__text-line">границ участка до подготовки технических документов,</span>
+                        <span class="about__text-line">экспертиз и защиты интересов клиентов в суде.</span>
+                    </p>
+                </div>
+</div>
+        </div>
+    </div>
+</section><script>(function () {
+    "use strict";
+
+    /*
+     * COMPLEX PLUS - ABOUT
+     *
+     * Одна scroll-driven сцена.
+     *
+     * 0 → 1:
+     *   0.00 - начало сцены
+     *   0.10 - первая строка
+     *   0.29 - вторая строка
+     *   0.48 - третья строка
+     *   0.67 - четвёртая строка
+     *   0.84 - пятая строка
+     *   0.91 - поясняющий текст
+     *   1.00 - полностью собранная композиция
+     *
+     * Никакого перехвата wheel.
+     * Никаких таймеров.
+     * Никакого отдельного scroll-lock.
+     */
+
+    const section = document.querySelector(".about-section");
+
+    if (!section) {
+        return;
+    }
+
+    const fragments = [
+        ...section.querySelectorAll(".about__fragment")
+    ];
+
+    const textLines = [
+        ...section.querySelectorAll(".about__text-line")
+    ];
+
+    const technical = [
+        ...section.querySelectorAll(".about__technical")
+    ];
+
+    const boundaries = [
+        ...section.querySelectorAll(".about__boundary")
+    ];
+
+    const cross = section.querySelector(".about__cross");
+
+    const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+
+    /* =========================================================
+       HELPERS
+       ========================================================= */
+
+    function clamp(value, min = 0, max = 1) {
+        return Math.max(min, Math.min(max, value));
+    }
+
+
+    function ease(value) {
+        value = clamp(value);
+
+        return value * value * (3 - 2 * value);
+    }
+
+
+    function range(progress, start, end) {
+        if (end <= start) {
+            return progress >= end ? 1 : 0;
+        }
+
+        return ease(
+            clamp(
+                (progress - start) /
+                (end - start)
+            )
+        );
+    }
+
+
+    function setTransform(
+        element,
+        x = 0,
+        y = 0,
+        scale = 1
+    ) {
+        if (reducedMotion) {
+            element.style.transform = "none";
+            return;
+        }
+
+        element.style.transform =
+            "translate3d(" +
+            x.toFixed(2) +
+            "px, " +
+            y.toFixed(2) +
+            "px, 0) " +
+            "scale(" +
+            scale.toFixed(4) +
+            ")";
+    }
+
+
+    // SVG overlays follow the actual glyph positions, including mobile wrapping.
+    // The original text stays in the DOM for selection and screen readers.
+    const ns = "http://www.w3.org/2000/svg";
+    const measure = document.createElement("canvas").getContext("2d");
+    const inkLines = new Map();
+
+    function prepareInk() {
+        if (reducedMotion || !measure) return;
+        [...fragments, ...textLines].forEach(function (line) {
+            let ink = inkLines.get(line);
+            if (!ink) {
+                const source = document.createElement("span");
+                source.className = "about__ink-source";
+                source.append(...line.childNodes);
+                const svg = document.createElementNS(ns, "svg");
+                svg.classList.add("about__ink");
+                svg.setAttribute("aria-hidden", "true");
+                svg.setAttribute("focusable", "false");
+                line.append(source, svg);
+                ink = { source, svg, glyphs: [] };
+                inkLines.set(line, ink);
+            }
+            ink.svg.replaceChildren();
+            ink.glyphs = [];
+            const box = line.getBoundingClientRect();
+            ink.svg.setAttribute("viewBox", `0 0 ${box.width} ${box.height}`);
+            const walker = document.createTreeWalker(ink.source, NodeFilter.SHOW_TEXT);
+            let node;
+            while ((node = walker.nextNode())) {
+                const style = getComputedStyle(node.parentElement);
+                measure.font = `${style.fontWeight} ${style.fontSize} ${style.fontFamily}`;
+                const metrics = measure.measureText("Hg");
+                const ascent = metrics.fontBoundingBoxAscent || parseFloat(style.fontSize) * .8;
+                const descent = metrics.fontBoundingBoxDescent || parseFloat(style.fontSize) * .2;
+                for (let i = 0; i < node.length; i++) {
+                    if (/\s/.test(node.textContent[i])) continue;
+                    const range = document.createRange();
+                    range.setStart(node, i);
+                    range.setEnd(node, i + 1);
+                    const rect = range.getBoundingClientRect();
+                    const glyph = document.createElementNS(ns, "text");
+                    glyph.textContent = node.textContent[i];
+                    glyph.setAttribute("x", rect.left - box.left);
+                    glyph.setAttribute("y", rect.top - box.top + (rect.height - ascent - descent) / 2 + ascent);
+                    glyph.style.fontFamily = style.fontFamily;
+                    glyph.style.fontSize = style.fontSize;
+                    glyph.style.fontWeight = style.fontWeight;
+                    glyph.style.stroke = style.color;
+                    const length = parseFloat(style.fontSize) * 4;
+                    glyph.style.strokeDasharray = length;
+                    glyph.style.strokeDashoffset = length;
+                    ink.svg.append(glyph);
+                    ink.glyphs.push({ glyph, length });
+                }
+            }
+        });
+        section.classList.add("is-scroll-ready");
+    }
+
+    function drawInk(lines, starts, ends, progress) {
+        lines.forEach(function (line, index) {
+            const ink = inkLines.get(line);
+            if (!ink) return;
+            const local = range(progress, starts[index] ?? starts[0], ends[index] ?? ends[0]);
+            const fill = range(local, .55, 1);
+            ink.source.style.opacity = String(.14 + .86 * fill);
+            ink.svg.style.opacity = String(1 - fill);
+            ink.glyphs.forEach(function ({ glyph, length }, i) {
+                const stagger = i / Math.max(1, ink.glyphs.length - 1) * .18;
+                const draw = range(local, stagger, .7 + stagger);
+                glyph.style.strokeDashoffset = String(length * (1 - draw));
+            });
+        });
+    }
+
+    /* =========================================================
+       MAIN RENDER
+       ========================================================= */
+
+    function render(progress) {
+
+        progress = clamp(progress);
+
+
+        drawInk(fragments, [0.02, .18, .34, .50, .66], [.28, .44, .60, .76, .92], progress);
+        drawInk(textLines, [.76, .81, .86], [.94, .97, 1], progress);
+
+        /* =====================================================
+           3. GEOMETRY
+           =====================================================
+
+           Геометрия больше не является главным объектом.
+
+           Она:
+           - присутствует;
+           - слегка двигается;
+           - освобождает центр;
+           - остаётся почти незаметной.
+           ===================================================== */
+
+        const geometry =
+            range(
+                progress,
+                0.08,
+                0.78
+            );
+
+
+        const finalGeometry =
+            range(
+                progress,
+                0.82,
+                1
+            );
+
+
+        boundaries.forEach(function (element) {
+
+            const isLeft =
+                element.classList.contains(
+                    "about__boundary--left"
+                );
+
+            const direction =
+                isLeft ? -1 : 1;
+
+
+            /*
+             * Очень небольшое расхождение от центра.
+             */
+
+            const x =
+                direction *
+                (
+                    10 +
+                    geometry * 17
+                );
+
+
+            element.style.opacity =
+                (
+                    0.13 -
+                    finalGeometry * 0.035
+                ).toFixed(4);
+
+
+            setTransform(
+                element,
+                x,
+                0
+            );
+        });
+
+
+        /* =====================================================
+           4. TECHNICAL LABELS
+           ===================================================== */
+
+        technical.forEach(function (element, index) {
+
+            const direction =
+                index % 2 === 0
+                    ? -1
+                    : 1;
+
+
+            const x =
+                direction *
+                7 *
+                (1 - geometry);
+
+
+            const y =
+                (
+                    index % 3 === 0
+                        ? -1
+                        : 1
+                ) *
+                3 *
+                (1 - geometry);
+
+
+            element.style.opacity =
+                (
+                    0.10 +
+                    geometry * 0.08
+                ).toFixed(4);
+
+
+            setTransform(
+                element,
+                x,
+                y
+            );
+        });
+
+
+        /* =====================================================
+           5. OLD CORNER MARKERS
+           =====================================================
+
+           Старые внешние маркеры больше не нужны.
+
+           Декоративные углы теперь находятся непосредственно
+           вокруг "Комплекс Плюс".
+           ===================================================== */
+
+        /* =====================================================
+           6. CENTRAL CROSS
+           ===================================================== */
+
+        if (cross) {
+
+            const crossProgress =
+                range(
+                    progress,
+                    0.15,
+                    0.65
+                );
+
+
+            cross.style.opacity =
+                (
+                    0.16 -
+                    0.04 * finalGeometry
+                ).toFixed(4);
+
+
+            const circle =
+                cross.querySelector("circle");
+
+            const lines =
+                cross.querySelectorAll("line");
+
+
+            lines.forEach(function (line) {
+
+                line.style.opacity =
+                    (
+                        0.35 +
+                        crossProgress * 0.20
+                    ).toFixed(4);
+            });
+
+
+            if (circle) {
+
+                circle.style.opacity =
+                    (
+                        0.35 +
+                        crossProgress * 0.15
+                    ).toFixed(4);
+            }
+        }
+
+
+        /* =====================================================
+           7. STATE
+           ===================================================== */
+
+        section.classList.toggle(
+            "is-assembling",
+            progress > 0.01 &&
+            progress < 0.96
+        );
+
+
+        section.classList.toggle(
+            "is-complete",
+            progress >= 0.985
+        );
+    }
+
+
+    /* =========================================================
+       SCROLL LOOP
+       ========================================================= */
+
+    let ticking = false;
+
+
+    function update() {
+
+        ticking = false;
+
+
+        const rect =
+            section.getBoundingClientRect();
+
+
+        const totalScroll =
+            Math.max(
+                1,
+                section.offsetHeight -
+                window.innerHeight
+            );
+
+
+        const progress =
+            clamp(
+                (-rect.top) /
+                totalScroll
+            );
+
+
+        render(progress);
+    }
+
+
+    function requestUpdate() {
+
+        if (ticking) {
+            return;
+        }
+
+        ticking = true;
+
+        requestAnimationFrame(
+            update
+        );
+    }
+
+
+    /* =========================================================
+       EVENTS
+       ========================================================= */
+
+    window.addEventListener(
+        "scroll",
+        requestUpdate,
+        {
+            passive: true
+        }
+    );
+
+
+    window.addEventListener(
+        "resize",
+        function () { prepareInk(); requestUpdate(); },
+        {
+            passive: true
+        }
+    );
+
+
+    if (
+        document.fonts &&
+        document.fonts.ready
+    ) {
+
+        document.fonts.ready.then(function () { prepareInk(); requestUpdate(); });
+    }
+
+
+    prepareInk();
+    update();
+
+})();
+</script></body></html>

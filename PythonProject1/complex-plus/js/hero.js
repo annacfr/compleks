@@ -769,6 +769,7 @@
             resize
         );
 
+        maskImage.crossOrigin = "anonymous";
         maskImage.src =
             "images/district-mask.png";
     }
